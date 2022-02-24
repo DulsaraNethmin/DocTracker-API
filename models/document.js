@@ -4,21 +4,31 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Document extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+
+    static associate({Department}) {
+        this.hasOne(Department,{foreignKey:'department_id'})
+    }
+    toJSON(){
+      return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
   Document.init({
-    uuid: DataTypes.UUID,
-    doc_name: DataTypes.STRING,
-    type: DataTypes.STRING,
-    date: DataTypes.DATE,
-    department_id: DataTypes.UUID
+    uuid:{
+      type: DataTypes.UUID,
+      defaultValue:DataTypes.UUIDV4,
+    },
+    doc_name: {
+      type:DataTypes.STRING,
+    },
+    type:{
+      type: DataTypes.STRING,
+    },
+    date:{
+      type: DataTypes.DATE,
+    },
+    department_id:{
+      type: DataTypes.UUID
+    },
   }, {
     sequelize,
     modelName: 'Document',
