@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
+    "username": "nethmin",
+    "password": "Pa$$w0rd",
+    "database": "doc_tracker",
+    "host": "nd-sqlserver-01.mysql.database.azure.com",
     "dialect": "mysql"
   },
   "test": {
