@@ -1,13 +1,14 @@
 'use strict';
 const {
-  Model
+  Model, UUID
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Request extends Model {
 
-    static associate({User}) {
-      this.hasOne(user,{foreignKey:'admin_id'})
+    static associate({User,Document}) {
+      this.hasOne(User,{foreignKey:'admin_id'})
       this.hasMany(User,{foreignKey:'customer_id'})
+      this.hasOne(Document,{foreignKey:'document_id'})
       
     }
     toJSON(){
@@ -23,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     customer_id:{
       type: DataTypes.UUID
+    },
+    document_id:{
+      type:DataTypes.UUID,
     },
   }, {
     sequelize,

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Document extends Model {
 
     static associate({Department}) {
-        this.hasOne(Department,{foreignKey:'department_id'})
+       this.hasOne(Department,{foreignKey:'department_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};

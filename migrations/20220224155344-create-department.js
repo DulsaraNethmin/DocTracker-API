@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       branch_id: {
-        type: Sequelize.UUID,
+        type: Sequelize.UUID
       },
       createdAt: {
         allowNull: false,
