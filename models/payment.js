@@ -4,22 +4,34 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Payment extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+    static associate({Job,User}) {
+      this.hasOne(Job,{foreignKey:'job_id'})
+      this.hasOne(User,{foreignKey:'customer_id'})
+    }
+    toJSON(){
+      return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
   Payment.init({
-    uuid: DataTypes.UUID,
-    date: DataTypes.DATE,
-    amount: DataTypes.DOUBLE,
-    is_paid: DataTypes.BOOLEAN,
-    job_id: DataTypes.UUID,
-    customer_id: DataTypes.UUID
+    uuid:{
+      type: DataTypes.UUID,
+      defaultValue:DataTypes.UUIDV4,
+    },
+    date:{
+      type: DataTypes.DATE,
+    },
+    amount:{
+      type: DataTypes.DOUBLE,
+    },
+    is_paid:{
+      type: DataTypes.BOOLEAN,
+    },
+    job_id:{
+      type: DataTypes.UUID,
+    },
+    customer_id:{
+      type: DataTypes.UUID
+    },
   }, {
     sequelize,
     modelName: 'Payment',

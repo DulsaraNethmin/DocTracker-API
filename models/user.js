@@ -38,6 +38,9 @@ module.exports = (sequelize, DataTypes) => {
     department_id:{
       type: DataTypes.UUID,
     },
+    role:{
+      type:DataTypes.STRING,
+    }
   }, {
     sequelize,
     modelName: 'User',

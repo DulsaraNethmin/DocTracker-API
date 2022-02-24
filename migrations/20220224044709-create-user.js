@@ -33,6 +33,9 @@ module.exports = {
       department_id: {
         type: Sequelize.UUID,
       },
+      role:{
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

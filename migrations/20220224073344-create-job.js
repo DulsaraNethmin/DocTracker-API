@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       uuid: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        defaultValue:Sequelize.UUIDV4,
       },
       date: {
         type: Sequelize.DATE
