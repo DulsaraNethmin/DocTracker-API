@@ -5,9 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Notification extends Model {
 
-    static associate({User}) {
-      this.hasOne(User,{foreignKey:'sender_id'})
-      this.hasMany(User,{foreignKey:'receiver_id'})
+    static associate({NotificationUser}) {
+      this.hasMany(NotificationUser,{foreignKey:'notification_id'})
     }
   }
   Notification.init({
@@ -20,15 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     head: {
       type:DataTypes.STRING,
-    },
-    is_seen: {
-      type:DataTypes.BOOLEAN,
-    },
-    sender_id: {
-      type:DataTypes.UUID,
-    },
-    receiver_id: {
-      type:DataTypes.UUID
     },
   }, {
     sequelize,

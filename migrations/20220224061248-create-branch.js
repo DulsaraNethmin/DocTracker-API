@@ -1,4 +1,7 @@
 'use strict';
+
+const { UUID } = require("sequelize/types");
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Branches', {
@@ -23,6 +26,9 @@ module.exports = {
       },
       street: {
         type: Sequelize.STRING
+      },
+      organization_id:{
+        type:Sequelize.UUID,
       },
       createdAt: {
         allowNull: false,

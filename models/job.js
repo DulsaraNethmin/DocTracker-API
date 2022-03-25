@@ -5,10 +5,12 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Job extends Model {
 
-    static associate({User,Document}) {
-      this.hasOne(User,{foreignKey:'admin_id'})
-      this.hasOne(User,{foreignKey:'emp_id'})
-      this.hasOne(Document,{foreignKey:'doc_id'})
+    static associate({User,Document,Payment}) {
+      this.belongsTo(User)
+      this.belongsTo(User)
+      this.belongsTo(User)
+      this.belongsTo(Document)
+      this.hasOne(Payment,{foreignKey:'job_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
@@ -25,7 +27,10 @@ module.exports = (sequelize, DataTypes) => {
     admin_id:{
       type: DataTypes.UUID,
     },
-    emp_id:{
+    deliverer_id:{
+      type: DataTypes.UUID,
+    },
+    customer_id:{
       type: DataTypes.UUID,
     },
     doc_id:{

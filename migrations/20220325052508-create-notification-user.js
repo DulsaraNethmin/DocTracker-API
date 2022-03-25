@@ -1,31 +1,22 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Jobs', {
+    await queryInterface.createTable('NotificationUsers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      uuid: {
+      notification_id: {
         type: Sequelize.UUID,
         defaultValue:Sequelize.UUIDV4,
       },
-      date: {
-        type: Sequelize.DATE
-      },
-      admin_id: {
+      user_id: {
         type: Sequelize.UUID
       },
-      deliverer_id: {
-        type: Sequelize.UUID
-      },
-      customer_id: {
-        type: Sequelize.UUID
-      },
-      doc_id: {
-        type: Sequelize.UUID
+      is_seen:{
+        type:Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Jobs');
+    await queryInterface.dropTable('NotificationUsers');
   }
 };

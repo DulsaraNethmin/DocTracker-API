@@ -5,8 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Branch extends Model {
 
-    static associate({Department}) {
+    static associate({Department,Organization}) {
       this.hasMany(Department,{foreignKey:'branch_id'})
+      this.belongsTo(Organization)
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
@@ -29,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     street: {
       type: DataTypes.STRING,
     },
+    organization_id:{
+      type:DataTypes.UUID,
+    }
   }, {
     sequelize,
     modelName: 'Branch',

@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class Request extends Model {
 
     static associate({User,Document}) {
-      this.hasOne(User,{foreignKey:'admin_id'})
-      this.hasMany(User,{foreignKey:'customer_id'})
-      this.hasOne(Document,{foreignKey:'document_id'})
+      this.belongsTo(User)
+      this.belongsTo(User)
+      this.belongsTo(Document)
       
     }
     toJSON(){

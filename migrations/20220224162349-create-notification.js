@@ -18,15 +18,6 @@ module.exports = {
       head: {
         type: Sequelize.STRING
       },
-      is_seen: {
-        type: Sequelize.BOOLEAN
-      },
-      sender_id: {
-        type: Sequelize.UUID
-      },
-      receiver_id: {
-        type: Sequelize.UUID
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

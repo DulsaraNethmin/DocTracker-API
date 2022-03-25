@@ -4,11 +4,15 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate({Department,User_Log,Notification}) {
-      this.hasOne(Department,{foreignKey:'department_id'})
+    static associate({Department,User_Log,NotificationUser,Requests,Job}) {
+      this.belongsTo(Department)
       this.hasMany(User_Log,{foreignKey:'user_id'})
-      this.hasMany(Notification,{foreignKey:'sender_id'})
-      this.hasMany(Notification,{foreignKey:'receiver_id'})
+      this.hasMany(NotificationUser,{foreignKey:'user_id'})
+      this.hasMany(Requests,{foreignKey:'customer_id'})
+      this.hasMany(Requests,{foreignKey:'admin_id'})
+      this.hasMany(Job,{foreignKey:'admin_id'})
+      this.hasMany(Job,{foreignKey:'deliverer_id'})
+      this.hasMany(Job,{foreignKey:'customer_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
@@ -40,9 +44,6 @@ module.exports = (sequelize, DataTypes) => {
     department_id:{
       type: DataTypes.UUID,
     },
-    role:{
-      type:DataTypes.STRING,
-    }
   }, {
     sequelize,
     modelName: 'User',
