@@ -50,5 +50,8 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     tableName: 'users'
   });
+  user.afterCreate((u)=>{
+    console.log(u.name)
+  })
   return user;
 };
