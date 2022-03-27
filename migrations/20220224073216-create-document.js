@@ -21,7 +21,7 @@ module.exports = {
       date: {
         type: Sequelize.DATE
       },
-      department_id: {
+      branch_id: {
         type: Sequelize.UUID
       },
       createdAt: {

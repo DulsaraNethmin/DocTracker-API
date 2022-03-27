@@ -27,6 +27,9 @@ module.exports = {
       telephone: {
         type: Sequelize.STRING
       },
+      branch_id: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
