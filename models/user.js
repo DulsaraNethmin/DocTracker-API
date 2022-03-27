@@ -4,8 +4,8 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
-    static associate({Department,User_Log,NotificationUser,Request,Job}) {
-      this.belongsTo(Department)
+    static associate({Branch,User_Log,NotificationUser,Request,Job}) {
+      this.belongsTo(Branch)
       this.hasMany(User_Log,{foreignKey:'user_id'})
       this.hasMany(NotificationUser,{foreignKey:'user_id'})
       this.hasMany(Request,{foreignKey:'customer_id'})
@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     role:{
       type: DataTypes.STRING,
     },
-    department_id:{
+    branch_id:{
       type:DataTypes.UUID,
     },
   }, {

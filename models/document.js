@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Document extends Model {
 
-    static associate({Department,Job,Request}) {
-       this.belongsTo(Department)
+    static associate({Branch,Job,Request}) {
+       this.belongsTo(Branch)
        this.hasMany(Job,{foreignKey:'document_id'})
        this.hasMany(Request,{foreignKey:'document_id'})
     }
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     date:{
       type: DataTypes.DATE,
     },
-    department_id:{
+    branch_id:{
       type: DataTypes.UUID
     },
   }, {
