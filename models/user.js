@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(Job,{foreignKey:'deliverer_id'})
       this.hasMany(Job,{foreignKey:'customer_id'})
     }
+    toJSON(){
+      return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
+    }
   }
   user.init({
     uuid:{

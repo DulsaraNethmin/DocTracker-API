@@ -4,7 +4,8 @@ module.exports={
     async addOrganiation(req,res){
         try{
             var newData= await Organization.create({
-                name:req.body.name
+                name:req.body.name,
+                owner:req.body.owner,
             })
             res.status(200).send('created');
         }catch(e){
