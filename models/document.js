@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate({Department,Job,Request}) {
        this.belongsTo(Department)
-      // this.hasMany(Job,{foreignKey:'document_id'})
-      // this.hasMany(Request,{foreignKey:'document_id'})
+       this.hasMany(Job,{foreignKey:'document_id'})
+       this.hasMany(Request,{foreignKey:'document_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};

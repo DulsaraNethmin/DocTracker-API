@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Branch extends Model {
 
     static associate({Department,Organization}) {
-      //this.hasMany(Department,{foreignKey:'branch_id'})
+      this.hasMany(Department,{foreignKey:'branch_id'})
       this.belongsTo(Organization)
     }
     toJSON(){

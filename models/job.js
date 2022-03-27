@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       //this.belongsTo(User)
       //this.belongsTo(User)
       this.belongsTo(Document)
-      //this.hasOne(Payment,{foreignKey:'job_id'})
+      this.hasOne(Payment,{foreignKey:'job_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
