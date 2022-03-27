@@ -1,9 +1,9 @@
-const Organization = require('../models').Organization
+const organization = require('../models').Organization
 
 module.exports={
     async addOrganiation(req,res){
         try{
-            var newData= await Organization.create({
+            var newData= await organization.create({
                 name:req.body.name,
                 owner:req.body.owner,
             })

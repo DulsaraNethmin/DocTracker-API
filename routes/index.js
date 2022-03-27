@@ -5,6 +5,7 @@ const branch = require('../controllers/branch.controller');
 module.exports=(app)=>{
 //user routes
     app.post('/user/add',user.addUser)
+    app.delete('/user/delete',user.deleteUser)
 
 
 //organization routes
