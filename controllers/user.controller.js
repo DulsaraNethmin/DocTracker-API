@@ -10,7 +10,7 @@ module.exports={
                 password:req.body.password,
                 telephone:req.body.telephone,
                 role:req.body.role,
-                department_id:req.body.department_id,
+                branch_id:req.body.branch_id,
             })
             res.status(200).send("new user created")
         }catch(e){
