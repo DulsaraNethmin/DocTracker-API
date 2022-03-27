@@ -1,24 +1,14 @@
 'use strict';
 const {
-  Model
+  Model, UUID
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    static associate({Department,User_Log,NotificationUser,Requests,Job}) {
-      this.belongsTo(Department)
-      this.hasMany(User_Log,{foreignKey:'user_id'})
-      this.hasMany(NotificationUser,{foreignKey:'user_id'})
-      this.hasMany(Requests,{foreignKey:'customer_id'})
-      this.hasMany(Requests,{foreignKey:'admin_id'})
-      this.hasMany(Job,{foreignKey:'admin_id'})
-      this.hasMany(Job,{foreignKey:'deliverer_id'})
-      this.hasMany(Job,{foreignKey:'customer_id'})
-    }
-    toJSON(){
-      return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
+  class user extends Model {
+    static associate(models) {
+      // define association here
     }
   }
-  User.init({
+  user.init({
     uuid:{
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
@@ -42,12 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     department_id:{
-      type: DataTypes.UUID,
+      type:DataTypes.UUID,
     },
   }, {
     sequelize,
-    modelName: 'User',
-    tableName:'users',
+    modelName: 'user',
   });
-  return User;
+  return user;
 };

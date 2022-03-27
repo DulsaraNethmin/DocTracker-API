@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   class Job extends Model {
 
     static associate({User,Document,Payment}) {
-      this.belongsTo(User)
-      this.belongsTo(User)
-      this.belongsTo(User)
+      //this.belongsTo(User)
+      //this.belongsTo(User)
+      //this.belongsTo(User)
       this.belongsTo(Document)
-      this.hasOne(Payment,{foreignKey:'job_id'})
+      //this.hasOne(Payment,{foreignKey:'job_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};

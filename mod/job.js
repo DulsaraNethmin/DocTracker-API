@@ -3,16 +3,20 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Payment extends Model {
-    static associate({Job,User}) {
-      this.belongsTo(Job)
-      //this.belongsTo(User)
+  class Job extends Model {
+
+    static associate({User,Document,Payment}) {
+      this.belongsTo(User)
+      this.belongsTo(User)
+      this.belongsTo(User)
+      this.belongsTo(Document)
+      this.hasOne(Payment,{foreignKey:'job_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
-  Payment.init({
+  Job.init({
     uuid:{
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
@@ -20,22 +24,22 @@ module.exports = (sequelize, DataTypes) => {
     date:{
       type: DataTypes.DATE,
     },
-    amount:{
-      type: DataTypes.DOUBLE,
+    admin_id:{
+      type: DataTypes.UUID,
     },
-    is_paid:{
-      type: DataTypes.BOOLEAN,
-    },
-    job_id:{
+    deliverer_id:{
       type: DataTypes.UUID,
     },
     customer_id:{
+      type: DataTypes.UUID,
+    },
+    doc_id:{
       type: DataTypes.UUID
     },
   }, {
     sequelize,
-    modelName: 'Payment',
-    tableName:'payments'
+    modelName: 'Job',
+    tableName:'jobs',
   });
-  return Payment;
+  return Job;
 };

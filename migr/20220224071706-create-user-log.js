@@ -1,10 +1,7 @@
 'use strict';
-
-//const { UUID } = require("sequelize/types");
-
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Branches', {
+    await queryInterface.createTable('User_Logs', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,20 +12,14 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue:Sequelize.UUIDV4,
       },
-      name: {
-        type: Sequelize.STRING
+      user_id: {
+        type: Sequelize.UUID
       },
-      number: {
-        type: Sequelize.INTEGER
+      login_at: {
+        type: Sequelize.DATE
       },
-      town: {
-        type: Sequelize.STRING
-      },
-      street: {
-        type: Sequelize.STRING
-      },
-      organization_id:{
-        type:Sequelize.UUID,
+      logout_at: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Branches');
+    await queryInterface.dropTable('User_Logs');
   }
 };

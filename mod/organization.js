@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Organization extends Model {
     static associate({Branch}) {
-      //this.hasMany(Branch,{foreignKey:'organization_id'})
+      this.hasMany(Branch,{foreignKey:'organization_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Organization',
-    tableName: 'organizations',
+    tableName: 'organization',
   });
   // Organization.afterCreate(async(org)=>{
   //   console.log('hook trigger...!')
