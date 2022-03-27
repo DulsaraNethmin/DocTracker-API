@@ -5,10 +5,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Document extends Model {
 
-    static associate({Branch,Job,Request}) {
+    static associate({Branch,Job,Request,DocumentUser}) {
        this.belongsTo(Branch)
        this.hasMany(Job,{foreignKey:'document_id'})
        this.hasMany(Request,{foreignKey:'document_id'})
+       this.hasMany(DocumentUser,{foreignKey:'doc_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
