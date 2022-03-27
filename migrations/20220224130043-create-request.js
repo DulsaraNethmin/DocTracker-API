@@ -18,6 +18,9 @@ module.exports = {
       customer_id: {
         type: Sequelize.UUID
       },
+      document_id: {
+        type: Sequelize.UUID
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
