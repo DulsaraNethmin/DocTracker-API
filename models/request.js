@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class Request extends Model {
 
     static associate({User,Document}) {
-      //this.belongsTo(User)
-      //this.belongsTo(User)
+      this.belongsTo(User)
+      this.belongsTo(User)
       this.belongsTo(Document)
       
     }

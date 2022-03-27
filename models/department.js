@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({Branch,Document,User}) {
       this.belongsTo(Branch)
       this.hasMany(Document,{foreignKey:'department_id'})
-      //this.hasMany(User,{foreignKey:'department_id'})
+      this.hasMany(User,{foreignKey:'department_id'})
 
     }
   }
