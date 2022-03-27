@@ -12,5 +12,6 @@ module.exports=(app)=>{
 
 //branch routes
     app.post('/branch/add',branch.addBranch)
+    app.delete('/branch/delete',branch.deleteBranch)
 
 }

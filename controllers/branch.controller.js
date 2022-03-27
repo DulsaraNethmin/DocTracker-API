@@ -15,5 +15,16 @@ module.exports={
             console.log('an error occured '+e)
             res.status(500).send("server error")
         }
+    },
+
+    async deleteBranch(req,res){
+        try{
+            uuid=req.query.uuid
+            var newData=await branch.destroy({where:{uuid:uuid}})
+            res.status(200).send('branch deleted')
+        }catch(e){
+            console.log('an error occured '+e)
+            res.status(500).send("server error")
+        }
     }
 }
