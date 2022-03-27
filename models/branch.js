@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     number:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     town:{
       type: DataTypes.STRING,

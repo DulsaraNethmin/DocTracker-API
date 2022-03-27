@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       number: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       town: {
         type: Sequelize.STRING
