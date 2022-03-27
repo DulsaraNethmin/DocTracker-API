@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     password:{
       type: DataTypes.STRING,
     },
+    username:{
+      type: DataTypes.STRING,
+    },
     email:{
       type: DataTypes.STRING,
     },
@@ -51,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'users'
   });
   user.afterCreate((u)=>{
-    console.log(u.name)
+    console.log(u.name+" and "+u.email)
   })
   return user;
 };
