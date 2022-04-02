@@ -13,7 +13,10 @@ const io=require('socket.io')(server,{
 //middleware
 
 app.use(express.json);
-app.use(cors());
+//app.use(cors());
+
+
+//http.get('/',(req,res)=>res.send("hi"))
 
 
 io.on("Connection",()=>{
@@ -21,6 +24,6 @@ io.on("Connection",()=>{
 });
 
 
-server.listen(port,()=>{
-    console.log("server started");
+server.listen(port,"0.0.0.0",()=>{
+    console.log("server started on: "+port);
 })
