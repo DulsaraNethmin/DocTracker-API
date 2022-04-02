@@ -19,8 +19,9 @@ app.use(express.json);
 //http.get('/',(req,res)=>res.send("hi"))
 
 
-io.on("Connection",()=>{
-    console.log("connected")
+io.on("connection",(socket)=>{
+    console.log("connected");
+    socket.on("/test",(msg)=>{console.log(msg)});
 });
 
 
