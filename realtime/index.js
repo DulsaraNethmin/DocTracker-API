@@ -36,7 +36,15 @@ io.on("connection",(socket)=>{
     });
 });
 
+// app.route('/test').get((req,res)=>{
+//     console.log("test request");
+//     return res.json("App is working.")
+// });
 
+app.get('/',(req,res)=>{
+    console.log("hello");
+    return res.send("hi");
+})
 server.listen(port,"0.0.0.0",()=>{
     console.log("server started on: "+port);
 })
