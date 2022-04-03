@@ -31,7 +31,7 @@ io.on("connection",(socket)=>{
         var targetId=msg.target;
         //console.log("target id is :"+ targetId);
         if(users[targetId]){
-            users[targetId].emit('msg',msg.message);
+            users[targetId].emit('msg',{"message":msg.message,"time":msg.time});
         }
     });
 });
