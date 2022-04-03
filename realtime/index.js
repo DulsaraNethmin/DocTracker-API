@@ -18,10 +18,17 @@ app.use(express.json);
 
 //http.get('/',(req,res)=>res.send("hi"))
 
-
+var users={};
 io.on("connection",(socket)=>{
     console.log("connected");
-    socket.on("/test",(msg)=>{console.log(msg)});
+    socket.on("signin",(id)=>{console.log(id);
+        users[id]=socket;
+        console.log(users);
+    });
+
+    socket.on('msg',(msg)=>{
+        console.log(msg);
+    });
 });
 
 
