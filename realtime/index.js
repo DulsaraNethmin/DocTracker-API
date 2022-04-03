@@ -28,6 +28,11 @@ io.on("connection",(socket)=>{
 
     socket.on('msg',(msg)=>{
         console.log(msg);
+        var targetId=msg.target;
+        //console.log("target id is :"+ targetId);
+        if(users[targetId]){
+            users[targetId].emit('msg',msg.message);
+        }
     });
 });
 
