@@ -62,7 +62,7 @@ module.exports = {
       {
         uuid:'2a9203fc-5350-4500-b1e0-6dfd75776c90',
         name: 'Chinthani Rankoth',
-        username:"chamodhya@",
+        username:"chinthani@",
         password:'12345678',
         email:'chinthani@email.com',
         role:'Branch Owner',
