@@ -39,9 +39,6 @@ module.exports = (sequelize, DataTypes) => {
     telephone:{
       type: DataTypes.STRING,
     },
-    gender:{
-      type: DataTypes.STRING,
-    },
     role:{
       type: DataTypes.STRING,
     },
