@@ -19,5 +19,6 @@ module.exports=(app)=>{
 
 //document routes
     app.post('/document/add',document.addDocument)
+    app.get('/document/get/by/branch',document.getDocumenByBranch)
 
 }
