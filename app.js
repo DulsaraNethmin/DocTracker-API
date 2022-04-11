@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 
 const PORT = process.env.PORT || 8080;
-app.listen(8080, async() => {
+app.listen(8080,async() => {
   console.log(`Server is running on port ${PORT}.`);
   await sequelize.authenticate();
   console.log("DB connencted");
