@@ -5,13 +5,28 @@ const user= require('../models').User;
 
 
 module.exports={
-   
+    async getAllUser(req,res){
+        console.log('request come');
+        try{
+            var [result,metadata]= await sequelize.query(
+                `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId 
+                from users u, branches b 
+                where u.branch_id=b.uuid and u.branch_id='${req.query.branch_id}'`
+            )
+            res.status(200).send(result);
+        }catch(e){
+            console.log('an error occured '+e)
+            res.status(500).send('Server error')
+        }
+    },   
 
     async getAUser(req,res){
         console.log('request come');
         try{
             var [result,metadata]= await sequelize.query(
-                `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch from users u, branches b where u.branch_id=b.uuid and u.username='${req.body.username}' and u.password='${req.body.password}'`
+                `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId 
+                from users u, branches b 
+                where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}'`
             )
             res.status(200).send(result);
         }catch(e){
