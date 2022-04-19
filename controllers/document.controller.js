@@ -5,11 +5,11 @@ const document = require('../models').Document
 module.exports={
     async getDocumenByBranch(req,res){
         try{
-            var branch= req.query.branch;
+            var branch= req.query.branch_id;
             var [result,metadata] = await sequelize.query(
                 `select d.uuid as doc_id,d.doc_name as doc,d.type as doc_type,du.customer_id,u.name as customer_name
                  from documents d, branches b,users u,documentusers du 
-                 where d.branch_id = b.uuid and b.name='${branch}' and du.doc_id=d.uuid and du.is_current_user=${true} and du.customer_id = u.uuid`
+                 where d.branch_id = b.uuid and b.uuid='${branch}' and du.doc_id=d.uuid and du.is_current_user=${true} and du.customer_id = u.uuid`
                  )
             console.log(result)
             res.status(200).send(result);
