@@ -4,7 +4,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
-    static associate({Branch,User_Log,NotificationUser,Request,Job,DocumentUser}) {
+    static associate({Branch,User_Log,NotificationUser,Request,Job,DocumentUser,OfflineChat}) {
       this.belongsTo(Branch)
       this.hasMany(User_Log,{foreignKey:'user_id'})
       this.hasMany(NotificationUser,{foreignKey:'user_id'})
@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(Job,{foreignKey:'deliverer_id'})
       this.hasMany(Job,{foreignKey:'customer_id'})
       this.hasMany(DocumentUser,{foreignKey:'customer_id'})
+      this.hasMany(OfflineChat,{foreignKey:'from'})
+      this.hasMany(OfflineChat,{foreignKey:'to'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
