@@ -2,7 +2,7 @@
   "development": {
     "username": "nethmin",
     "password": "Pa$$w0rd",
-    "database": "doctracker",
+    "database": "Chinthani",
     "host": "nd-sqlserver-01.mysql.database.azure.com",
     "dialect": "mysql"
   },
