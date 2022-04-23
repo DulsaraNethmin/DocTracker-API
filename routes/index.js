@@ -9,6 +9,7 @@ module.exports=(app)=>{
     app.delete('/user/delete',user.deleteUser)
     app.post('/user/get/one',user.getAUser)
     app.get('/user/get/all',user.getAllUser)
+    app.get('/user/get/customer',user.getAllCustomersOfABranch)
 
 
 //organization routes

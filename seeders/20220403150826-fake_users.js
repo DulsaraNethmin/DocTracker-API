@@ -140,6 +140,30 @@ module.exports = {
         updatedAt:"2022-04-03 12:45:05"
       },
       {
+        uuid:'2a9203fc-5399-42bd-b1e0-6dfd75776c90',
+        name: 'Viduranga Kadanamulla',
+        username:"viduranga@",
+        password:'12345678',
+        email:'viduranga@email.com',
+        role:'Customer',
+        telephone:'0718807149',
+        branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
+        createdAt:"2022-04-03 12:45:05",
+        updatedAt:"2022-04-03 12:45:05"
+      },
+      {
+        uuid:'2a9203fc-5398-42bd-b1e0-6dfd75776c90',
+        name: 'Kawshi Sithara',
+        username:"kawshi@",
+        password:'12345678',
+        email:'kawshi@email.com',
+        role:'Customer',
+        telephone:'0718807149',
+        branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
+        createdAt:"2022-04-03 12:45:05",
+        updatedAt:"2022-04-03 12:45:05"
+      },
+      {
         uuid:'2a9203fc-5350-2080-b1e0-6dfd75776c90',
         name: 'Dileepa Perera',
         username:"dileepa@",
