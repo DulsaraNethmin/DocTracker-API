@@ -32,6 +32,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     body:{
        type:DataTypes.STRING
+      },
+    seen:{
+      type:DataTypes.BOOLEAN
       }
   }, {
     sequelize,

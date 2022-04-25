@@ -28,6 +28,9 @@ module.exports = {
       body: {
         type: Sequelize.STRING
       },
+      seen:{
+        type:Sequelize.BOOLEAN
+        },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
