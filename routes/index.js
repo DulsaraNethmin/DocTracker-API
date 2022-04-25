@@ -23,4 +23,7 @@ module.exports=(app)=>{
     app.post('/document/add',document.addDocument)
     app.get('/document/get/by/branch',document.getDocumenByBranch)
 
+//mail routes
+    app.post('/mail/add')
+
 }
