@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
-  mail.init({
+  Mail.init({
     uuid: {
       type:DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4
