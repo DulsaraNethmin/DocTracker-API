@@ -5,6 +5,7 @@ const mail = require('../models').Mail
 module.exports={
     async addMail(req,res){
         try{
+            console.log(req.body);
             const {from,to,time,head,body}= req.body;
             var newData=await mail.create({
                 from:from,
@@ -13,8 +14,30 @@ module.exports={
                 seen:false,
                 head:head,
                 body:body
-            })
-            res.status(200).send("new mail added")
+            });
+            var [result,metadata]=await sequelize.query(
+                `select m.uuid as mail_id, fu.uuid as from_id,fu.name as from_name,tu.uuid as to_id,tu.name as to_name,m.head,m.body,m.seen,m.time
+                from mails m, users fu,users tu
+                where m.uuid='${newData["uuid"]}' and m.from=fu.uuid and m.to=tu.uuid`
+            );
+            res.status(200).send(result)
+        }catch(e){
+            console.log('an error occured '+e)
+            res.status(500).send('Server error')
+        }
+    },
+
+    async getAMail(String ){
+        const user_id= req.query.uuid;
+        const mail_id = req.q
+        try{
+            //m.uuid as mail_id, fu.uuid as from,fu.name as from_name,tu.uuid as to,tu.name as to_name
+            var [result,metadata]=await sequelize.query(
+                `select m.uuid as mail_id, fu.uuid as from_id,fu.name as from_name,tu.uuid as to_id,tu.name as to_name,m.head,m.body,m.seen,m.time
+                from mails m, users fu,users tu
+                where m.from='${user_id}' and m.from=fu.uuid and m.to=tu.uuid`
+            );
+            res.status(200).send(result)
         }catch(e){
             console.log('an error occured '+e)
             res.status(500).send('Server error')
