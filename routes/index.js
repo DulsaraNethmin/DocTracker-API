@@ -3,6 +3,7 @@ const organization = require('../controllers/organization.controller');
 const branch = require('../controllers/branch.controller');
 const document = require('../controllers/document.controller');
 const mail = require('../controllers/mail.controller');
+const aws = require('../controllers/aws.controller');
 
 module.exports=(app)=>{
 //user routes
@@ -30,5 +31,8 @@ module.exports=(app)=>{
     app.put('/mail/update',mail.updateMail)
     app.get('/mail/get/sent',mail.getSentMail)
     app.get('/mail/get/received',mail.getReceivedMail)
+
+//aws routes
+    app.post('/get/presignedurl',aws.getPresignedUrl)
 
 }
