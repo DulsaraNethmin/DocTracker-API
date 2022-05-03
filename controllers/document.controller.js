@@ -7,7 +7,7 @@ module.exports={
         try{
             var branch= req.query.branch_id;
             var [result,metadata] = await sequelize.query(
-                `select d.uuid as doc_id,d.doc_name as doc,d.type as doc_type,du.customer_id,u.name as customer_name
+                `select d.uuid as doc_id,d.doc_name as doc,d.type as doc_type,du.customer_id,u.name as customer_name,b.uuid as branch_id,b.name as branch
                  from documents d, branches b,users u,documentusers du 
                  where d.branch_id = b.uuid and b.uuid='${branch}' and du.doc_id=d.uuid and du.is_current_user=${true} and du.customer_id = u.uuid`
                  )

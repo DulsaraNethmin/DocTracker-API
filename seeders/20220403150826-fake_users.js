@@ -21,7 +21,8 @@ module.exports = {
         telephone:'0718807149',
         branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-2000-b1e0-6dfd75776c90',
@@ -33,7 +34,8 @@ module.exports = {
         telephone:'0711123412',
         branch_id:'1356d36d-05ca-7800-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-2500-b1e0-6dfd75776c90',
@@ -45,7 +47,8 @@ module.exports = {
         telephone:'0719088978',
         branch_id:'1356d36d-05ca-4000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-3500-b1e0-6dfd75776c90',
@@ -57,7 +60,8 @@ module.exports = {
         telephone:'0789086756',
         branch_id:'1356d36d-05ca-8000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-4500-b1e0-6dfd75776c90',
@@ -69,7 +73,8 @@ module.exports = {
         telephone:'0789086756',
         branch_id:'1356d36d-05ca-5000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },{
         uuid:'2a9203fc-5350-2590-b1e0-6dfd75776c90',
         name: 'Bimsara perera',
@@ -80,7 +85,8 @@ module.exports = {
         telephone:'0719088978',
         branch_id:'1356d36d-05ca-4000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-3590-b1e0-6dfd75776c90',
@@ -92,7 +98,8 @@ module.exports = {
         telephone:'0789086756',
         branch_id:'1356d36d-05ca-8000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-4590-b1e0-6dfd75776c90',
@@ -104,7 +111,8 @@ module.exports = {
         telephone:'0789086756',
         branch_id:'1356d36d-05ca-5000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },{
         uuid:'2a9203fc-5390-42bd-b1e0-6dfd75776c90',
         name: 'Sithmi Rashmika',
@@ -115,7 +123,8 @@ module.exports = {
         telephone:'0718807149',
         branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },{
         uuid:'2a9203fc-5391-42bd-b1e0-6dfd75776c90',
         name: 'Akila Deshan',
@@ -126,7 +135,8 @@ module.exports = {
         telephone:'0718807149',
         branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },{
         uuid:'2a9203fc-5392-42bd-b1e0-6dfd75776c90',
         name: 'Uthsara Thesera',
@@ -137,7 +147,34 @@ module.exports = {
         telephone:'0718807149',
         branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
+      },
+      {
+        uuid:'2a9203fc-5399-42bd-b1e0-6dfd75776c90',
+        name: 'Viduranga Kadanamulla',
+        username:"viduranga@",
+        password:'12345678',
+        email:'viduranga@email.com',
+        role:'Customer',
+        telephone:'0718807149',
+        branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
+        createdAt:"2022-04-03 12:45:05",
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
+      },
+      {
+        uuid:'2a9203fc-5398-42bd-b1e0-6dfd75776c90',
+        name: 'Kawshi Sithara',
+        username:"kawshi@",
+        password:'12345678',
+        email:'kawshi@email.com',
+        role:'Customer',
+        telephone:'0718807149',
+        branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
+        createdAt:"2022-04-03 12:45:05",
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-2080-b1e0-6dfd75776c90',
@@ -149,7 +186,8 @@ module.exports = {
         telephone:'0711123412',
         branch_id:'1356d36d-05ca-7800-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },{
         uuid:'2a9203fc-5350-2540-b1e0-6dfd75776c90',
         name: 'Priyantha de Silva',
@@ -160,7 +198,8 @@ module.exports = {
         telephone:'0719088978',
         branch_id:'1356d36d-05ca-4000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-3560-b1e0-6dfd75776c90',
@@ -172,7 +211,8 @@ module.exports = {
         telephone:'0789086756',
         branch_id:'1356d36d-05ca-8000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-4570-b1e0-6dfd75776c90',
@@ -184,7 +224,8 @@ module.exports = {
         telephone:'0789086756',
         branch_id:'1356d36d-05ca-5000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },{
         uuid:'2a9203fc-5370-42bd-b1e0-6dfd75776c90',
         name: 'Deshani Dissanayake',
@@ -195,7 +236,8 @@ module.exports = {
         telephone:'0718807149',
         branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
       {
         uuid:'2a9203fc-5350-2070-b1e0-6dfd75776c90',
@@ -207,7 +249,8 @@ module.exports = {
         telephone:'0711123412',
         branch_id:'1356d36d-05ca-7800-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
+        updatedAt:"2022-04-03 12:45:05",
+        image_url:'https://nethmin.s3.amazonaws.com/a5f62fd7-35e3-4803-a3fe-5cba4650a845.png'
       },
 
     ], {});
