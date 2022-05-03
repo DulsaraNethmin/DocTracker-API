@@ -76,5 +76,22 @@ module.exports={
             console.log('an error occured '+e)
             res.status(500).send("server error")
         }
+    },
+
+    async updateProfilePic(req,res){
+        try{
+            uuid=req.query.uuid
+            url=req.body.url
+            var newData=await user.update({image_url:url},{
+                where:{
+                    uuid:uuid
+                }
+            })
+            res.status(200).send('user deleted')
+        }catch(e){
+            console.log('an error occured '+e)
+            res.status(500).send("server error")
+        }
     }
+
 }

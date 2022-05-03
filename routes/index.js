@@ -12,6 +12,7 @@ module.exports=(app)=>{
     app.post('/user/get/one',user.getAUser)
     app.get('/user/get/all',user.getAllUser)
     app.get('/user/get/customer',user.getAllCustomersOfABranch)
+    app.put('/user/update/pic',user.updateProfilePic)
 
 
 //organization routes
