@@ -47,6 +47,9 @@ module.exports = (sequelize, DataTypes) => {
     branch_id:{
       type:DataTypes.UUID,
     },
+    image_url:{
+      type:DataTypes.STRING,
+    },
   }, {
     sequelize,
     modelName: 'User',

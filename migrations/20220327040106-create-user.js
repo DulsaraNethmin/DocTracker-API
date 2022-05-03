@@ -31,6 +31,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       branch_id: {
+        type: Sequelize.UUID
+      },
+      image_url: {
         type: Sequelize.STRING
       },
       createdAt: {

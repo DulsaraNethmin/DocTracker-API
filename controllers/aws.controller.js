@@ -15,6 +15,7 @@ const s3 = new AWS.S3({
 
 module.exports={
     async getPresignedUrl(req, res){
+    console.log(req.body);
     let fileType = req.body.fileType;
     if (fileType != ".jpg" && fileType != ".png" && fileType != ".jpeg") {
         return res
@@ -30,7 +31,7 @@ module.exports={
         Key: fileName + "." + fileType,
         Expires: 60 * 60,
         ContentType: "image/" + fileType,
-        ACL: "public-read",
+        //ACL: "public-read",
     };
 
     s3.getSignedUrl("putObject", s3Params, (err, data) => {
