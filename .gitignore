@@ -1,7 +1,7 @@
+config/
 node_modules/
 jspm_packages/
 bower_components/
-config/
 
 npm-debug.log
 yarn-error.log
