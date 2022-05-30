@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "nethmin",
-    "password": "Pa$$w0rd",
-    "database": "doc_tracker",
-    "host": "nd-sqlserver-01.mysql.database.azure.com",
+    "username": "root",
+    "password": "san123NA@",
+    "database": "doctracker_new",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
