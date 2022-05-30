@@ -5,6 +5,15 @@ const {sequelize} = require('./models');
 var corsOptions = {
   origin: "http://localhost:8081"
 };
+
+
+//routers
+
+
+
+
+
+
 require('dotenv').config();
 app.use(cors(corsOptions));
 
@@ -18,6 +27,15 @@ app.get("/", (req, res) => {
   res.send("Welcome to DocTracker Api");
 });
 
+//router for addDocument
+const router=require('./routes/documentRouter')
+try{
+app.use('/api/document',router)
+}catch{
+  (e)=>{
+    res.json(e);
+  }
+}
 
 const PORT = process.env.PORT || 8080;
 app.listen(8080, async() => {

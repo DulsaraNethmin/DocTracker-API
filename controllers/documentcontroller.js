@@ -1,4 +1,3 @@
-const { default: ModelManager } = require('sequelize/types/model-manager')
 const db=require('../models')
 
 const Document=db.documents
