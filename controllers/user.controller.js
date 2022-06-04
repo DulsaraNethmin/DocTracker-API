@@ -28,6 +28,8 @@ module.exports={
                 from users u, branches b 
                 where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}'`
             )
+            //logic
+            //jwt
             res.status(200).send(result);
         }catch(e){
             console.log('an error occured '+e)
