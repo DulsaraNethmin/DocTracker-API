@@ -12,7 +12,7 @@ module.exports={
                  from documents d, branches b,users u,documentusers du 
                  where d.branch_id = b.uuid and b.uuid='${branch}' and du.doc_id=d.uuid and du.is_current_user=${true} and du.customer_id = u.uuid`
                  )
-            console.log(result)
+            console.log(metadata)
             res.status(200).send(result);
         }catch(e){
             console.log('an error occured '+e)
