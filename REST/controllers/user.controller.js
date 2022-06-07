@@ -1,7 +1,8 @@
 const { redirect } = require('express/lib/response');
 const { Sequelize, sequelize } = require('../models');
-
 const user= require('../models').User;
+const jwt=require('jsonwebtoken');
+//require('dotenv').config();
 
 
 module.exports={
@@ -29,8 +30,20 @@ module.exports={
                 where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}'`
             )
             //logic
-            //jwt
+            if(result.length==1){            
+                var jwt_payload={
+                uuid:result[0].uuid,
+                name:result[0].name
+            }
+            var token=jwt.sign(
+                result[0],process.env.JWT_SECRET,{expiresIn:"1H"}
+            );
+            console.log(token);
+            Object.assign(result[0],{token:token});
             res.status(200).send(result);
+        }else{
+            res.status(401).send("Unsuccessfull login");
+        }
         }catch(e){
             console.log('an error occured '+e)
             res.status(500).send('Server error')
