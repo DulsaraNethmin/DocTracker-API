@@ -30,7 +30,7 @@ module.exports = {
       //logic
       //jwt
       if (result.length != 0) res.status(200).send(result);
-      else res.status(400).send("Invalid User!");
+      else res.status(201).send("Invalid User!");
     } catch (e) {
       console.log("an error occured " + e);
       res.status(500).send("Server error");
