@@ -4,6 +4,7 @@ const branch = require('../controllers/branch.controller');
 const document = require('../controllers/document.controller');
 const mail = require('../controllers/mail.controller');
 const aws = require('../controllers/aws.controller');
+const auth=require('../validators/auth');
 
 module.exports=(app)=>{
 //user routes
@@ -12,7 +13,7 @@ module.exports=(app)=>{
     app.post('/user/get/one',user.getAUser)
     app.get('/user/get/all',user.getAllUser)
     app.get('/user/get/customer',user.getAllCustomersOfABranch)
-    app.put('/user/update/pic',user.updateProfilePic)
+    app.put('/user/update/pic',auth,user.updateProfilePic)
 
 
 //organization routes
