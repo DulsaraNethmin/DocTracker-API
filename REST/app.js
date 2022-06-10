@@ -1,11 +1,15 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+
 const {sequelize} = require('./models');
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8080",
+    credentials: true,
+    optionSuccessStatus: 200
+
 };
-require('dotenv').config();
 app.use(cors(corsOptions));
 
 app.use(express.json());

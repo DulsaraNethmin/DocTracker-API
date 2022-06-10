@@ -4,15 +4,20 @@ const branch = require('../controllers/branch.controller');
 const document = require('../controllers/document.controller');
 const mail = require('../controllers/mail.controller');
 const aws = require('../controllers/aws.controller');
+const auth=require('../validators/auth');
 
 module.exports=(app)=>{
 //user routes
     app.post('/user/add',user.addUser)
     app.delete('/user/delete',user.deleteUser)
     app.post('/user/get/one',user.getAUser)
+    app.post('/user/get/oneBrOwner',user.getABranchOwner)
+    app.post('/user/get/oneOrgOwner',user.getAOrgOwner)
     app.get('/user/get/all',user.getAllUser)
     app.get('/user/get/customer',user.getAllCustomersOfABranch)
-    app.put('/user/update/pic',user.updateProfilePic)
+    app.put('/user/update/pic',auth,user.updateProfilePic)
+    app.post('/user/verify/customer',user.getACustomer)
+    app.post('/user/verify/deliverer',user.getADeliverer)
 
 
 //organization routes
