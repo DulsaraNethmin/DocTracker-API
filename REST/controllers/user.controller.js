@@ -1,6 +1,7 @@
 const { redirect } = require("express/lib/response");
 const { Sequelize, sequelize } = require("../models");
 const user = require("../models").User;
+const organization = require("../models").Organization;
 const jwt = require("jsonwebtoken");
 //require('dotenv').config();
 
@@ -169,13 +170,20 @@ module.exports = {
     try {
       var newData = await user.create({
         name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
         telephone: req.body.telephone,
         role: req.body.role,
         branch_id: req.body.branch_id,
       });
-      res.status(200).send("new user created");
+      var org_id=req.body.org_id;
+      console.log(newData.dataValues.uuid);
+     // var result=await organization.update({owner:newData.dataValues.uuid},{where:{uuid:org_id}});
+     var result = await sequelize.query(
+      `update organizations set owner='${newData.dataValues.uuid}' where uuid='${org_id}'`
+     );
+      res.status(200).send(newData.dataValues);
     } catch (e) {
       console.log("an error occured " + e);
       res.status(500).send("Server error");
