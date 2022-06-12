@@ -1,18 +1,24 @@
 const express = require('express');
 const http = require('http');
-//const cors = require('cors');
+const cors = require('cors');
 const port=process.env.PORT || 8000;
 const app=express();
 const server=http.createServer(app)
-const io=require('socket.io')(server)
+const io=require('socket.io')(server,{
+    cors:{
+        origin:'*'
+    }
+})
 
 
 app.use(express.json);
-//app.get('/',(req,res)=>{res.send("Real time Server")});
+
+
 
 var users={};
 io.on("connection",(socket)=>{
     console.log("connected");
+
     socket.on("signin",(id)=>{console.log(id);
         users[id]=socket;
         console.log(users);
@@ -27,7 +33,11 @@ io.on("connection",(socket)=>{
             users[targetId].emit('msg',msg);
         }
     });
+    socket.on('mail',payload=>{
+        console.log(payload);
 
+    }); 
+   
     socket.on('new_msg',(id)=>{
         console.log(`Mail Target is ${id}`);
         if(users[id]){

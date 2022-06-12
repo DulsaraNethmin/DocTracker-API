@@ -5,6 +5,7 @@ const document = require('../controllers/document.controller');
 const mail = require('../controllers/mail.controller');
 const aws = require('../controllers/aws.controller');
 const auth=require('../validators/auth');
+const chat=require('../controllers/chatcontroller');
 
 module.exports=(app)=>{
 //user routes
@@ -29,6 +30,8 @@ module.exports=(app)=>{
     app.post('/document/add',document.addDocument)
     app.get('/document/get/by/branch',document.getDocumenByBranch)
     app.get('/document/verify',document.verifyDoc)
+    app.get('/document/getall',document.getallDocumentasync)
+    
 
 //mail routes
     app.post('/mail/add',mail.addMail)
@@ -39,5 +42,8 @@ module.exports=(app)=>{
 
 //aws routes
     app.post('/get/presignedurl',aws.getPresignedUrl)
+
+    //chat
+  
 
 }

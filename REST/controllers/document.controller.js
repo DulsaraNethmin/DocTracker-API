@@ -19,9 +19,8 @@ module.exports={
             res.status(500).send('Server error')
         }
     },
-
-
-    async addDocument(req,res){
+ async addDocument(req,res){
+         console.log(req.body.doc_name);
         try{
             var newData=await document.create({
                 doc_name:req.body.doc_name,
@@ -29,13 +28,12 @@ module.exports={
                 date:req.body.date,
                 branch_id:req.body.branch_id,
             })
-            res.status(200).send("new document added")
+            res.status(200);
         }catch(e){
             console.log('an error occured '+e)
             res.status(500).send('Server error')
         }
     },
-
     async verifyDoc(req,res){
         try{
             var doc_id=req.query.doc_id;
@@ -53,6 +51,17 @@ module.exports={
         }catch(e){
             console.log('an error occured '+e)
             res.status(500).send('Server error')
+        }  
+    },   
+        //to get all documents 
+         async getallDocumentasync(req,res){
+     try{      
+        var [result,metadata]=await sequelize.query(`
+       select * from documents
+    `)
+            res.status(200).send(result)}catch(e){
+                res.send("error");
+                console.log(e);
+            }
         }
-    }
 }
