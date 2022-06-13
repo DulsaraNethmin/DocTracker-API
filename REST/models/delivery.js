@@ -3,14 +3,14 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Job extends Model {
+  class Delivery extends Model {
 
     static associate({User,Document,Payment}) {
       this.belongsTo(User)
       this.belongsTo(User)
       this.belongsTo(User)
       this.belongsTo(Document)
-      this.hasOne(Payment,{foreignKey:'job_id'})
+      this.hasOne(Payment,{foreignKey:'delivery_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
@@ -24,22 +24,28 @@ module.exports = (sequelize, DataTypes) => {
     date:{
       type: DataTypes.DATE,
     },
-    admin_id:{
-      type: DataTypes.UUID,
-    },
     deliverer_id:{
       type: DataTypes.UUID,
     },
     customer_id:{
       type: DataTypes.UUID,
     },
+    end_customer_id:{
+      type: DataTypes.UUID,
+    },
     doc_id:{
       type: DataTypes.UUID
     },
+    job_id:{
+      type: DataTypes.UUID,
+    },
+    is_completed:{
+      type: DataTypes.BOOLEAN,
+    },
   }, {
     sequelize,
-    modelName: 'Job',
-    tableName:'jobs',
+    modelName: 'Delivery',
+    tableName:'deliveries',
   });
-  return Job;
+  return Delivery;
 };

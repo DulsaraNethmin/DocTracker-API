@@ -4,8 +4,8 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Payment extends Model {
-    static associate({Job,User}) {
-      this.belongsTo(Job)
+    static associate({Delivery,User}) {
+      this.belongsTo(Delivery)
       this.belongsTo(User)
     }
     toJSON(){
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     is_paid:{
       type: DataTypes.BOOLEAN,
     },
-    job_id:{
+    delivery_id:{
       type: DataTypes.UUID,
     },
     customer_id:{

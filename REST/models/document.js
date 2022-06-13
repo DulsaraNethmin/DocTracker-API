@@ -5,9 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Document extends Model {
 
-    static associate({Branch,Job,Request,DocumentUser}) {
+    static associate({Branch,Delivery,Request,DocumentUser}) {
        this.belongsTo(Branch)
-       this.hasMany(Job,{foreignKey:'document_id'})
+       this.hasMany(Delivery,{foreignKey:'doc_id'})
        this.hasMany(Request,{foreignKey:'document_id'})
        this.hasMany(DocumentUser,{foreignKey:'doc_id'})
     }
