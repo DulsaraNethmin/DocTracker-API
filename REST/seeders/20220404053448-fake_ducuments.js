@@ -106,7 +106,32 @@ module.exports = {
         date:null,
         branch_id:'1356d36d-05ca-7800-98bf-5a941355f418',        createdAt:"2022-04-03 12:45:05",
         updatedAt:"2022-04-03 12:45:05"
+      },{
+        uuid:'5e7f88b9-1333-4f65-9c7f-bc4698c4e77f',
+        doc_name: 'Annual Report 2019',
+        type:'Report',
+        date:null,
+        branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
+        createdAt:"2022-04-03 12:45:05",
+        updatedAt:"2022-04-03 12:45:05"
+      },{
+        uuid:'5e7f88b9-1334-4f65-9c7f-bc4698c4e77f',
+        doc_name: 'Social Fund 2020',
+        type:'Report',
+        date:null,
+        branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
+        createdAt:"2022-04-03 12:45:05",
+        updatedAt:"2022-04-03 12:45:05"
+      },{
+        uuid:'5e7f88b9-1335-4f65-9c7f-bc4698c4e77f',
+        doc_name: 'Overtime Report',
+        type:'Employee',
+        date:null,
+        branch_id:'1356d36d-05ca-4a50-98bf-5a941355f418',
+        createdAt:"2022-04-03 12:45:05",
+        updatedAt:"2022-04-03 12:45:05"
       }
+
     ], {});
   },
 
