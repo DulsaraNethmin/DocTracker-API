@@ -1,22 +1,33 @@
 'use strict';
 const {
-  Model
+  Model, UUIDV4
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class job extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+    static associate({Branch}) {
+
+    }
+    toJSON(){
+      return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
   job.init({
-    uuid: DataTypes.UUID,
-    is_completed: DataTypes.BOOLEAN,
-    branch_id: DataTypes.UUID
+    uuid: {
+      type:DataTypes.UUID,
+      defaultValue:UUIDV4
+    },
+    branch_id: {
+      type:DataTypes.UUID
+    },
+    deliverer_id: {
+      type:DataTypes.UUID
+    },
+    customer_id: {
+      type:DataTypes.UUID
+    },
+    is_completed: {
+      type:DataTypes.BOOLEAN
+    },
   }, {
     sequelize,
     modelName: 'job',

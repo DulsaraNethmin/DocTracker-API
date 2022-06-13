@@ -9,13 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       uuid: {
-        type: Sequelize.UUID
-      },
-      is_completed: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.UUID,
+        defaultValue:Sequelize.UUIDV4
       },
       branch_id: {
         type: Sequelize.UUID
+      },
+      deliverer_id: {
+        type:Sequelize.UUID
+      },
+      customer_id: {
+        type:Sequelize.UUID
+      },
+      is_completed: {
+        type:Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
