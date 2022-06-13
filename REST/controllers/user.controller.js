@@ -112,9 +112,9 @@ module.exports = {
     console.log("request come");
     try {
       var [result, metadata] = await sequelize.query(
-        `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url 
-              from users u, branches b 
-              where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}' and role='Branch Owner'`
+        `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url, o.uuid as organizationId
+              from users u, branches b, organizations o 
+              where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}' and role='Branch Owner' and b.organization_id=o.uuid `
       );
       //logic
       if (result.length == 1) {
