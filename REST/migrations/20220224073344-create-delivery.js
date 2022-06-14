@@ -12,15 +12,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue:Sequelize.UUIDV4,
       },
-      date: {
-        type: Sequelize.DATE
-      },
-      deliverer_id: {
-        type: Sequelize.UUID
-      },
-      customer_id: {
-        type: Sequelize.UUID
-      }, end_customer_id: {
+      end_customer_id: {
         type: Sequelize.UUID
       },
       doc_id: {

@@ -16,19 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
-  Job.init({
+  Delivery.init({
     uuid:{
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
-    },
-    date:{
-      type: DataTypes.DATE,
-    },
-    deliverer_id:{
-      type: DataTypes.UUID,
-    },
-    customer_id:{
-      type: DataTypes.UUID,
     },
     end_customer_id:{
       type: DataTypes.UUID,

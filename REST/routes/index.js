@@ -4,6 +4,7 @@ const branch = require('../controllers/branch.controller');
 const document = require('../controllers/document.controller');
 const mail = require('../controllers/mail.controller');
 const aws = require('../controllers/aws.controller');
+const job = require('../controllers/job.controller');
 const auth=require('../validators/auth');
 
 module.exports=(app)=>{
@@ -31,6 +32,9 @@ module.exports=(app)=>{
     app.post('/document/add',document.addDocument)
     app.get('/document/get/by/branch',document.getDocumenByBranch)
     app.get('/document/verify',document.verifyDoc)
+
+//job routes
+    app.post('/job/add/deliveries',job.addNewdeliveries)
 
 //mail routes
     app.post('/mail/add',mail.addMail)
