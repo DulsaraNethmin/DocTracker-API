@@ -20,7 +20,6 @@ module.exports=(app)=>{
     app.post('/user/verify/customer',user.getACustomer)
     app.post('/user/verify/deliverer',user.getADeliverer)
 
-
 //organization routes
     app.post('/organization/add',organization.addOrganiation)
 
@@ -35,6 +34,7 @@ module.exports=(app)=>{
 
 //job routes
     app.post('/job/add/deliveries',job.addNewdeliveries)
+    app.post('/job/create/new',job.createNewJob)
 
 //mail routes
     app.post('/mail/add',mail.addMail)
