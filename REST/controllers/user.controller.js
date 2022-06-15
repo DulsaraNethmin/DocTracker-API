@@ -20,7 +20,7 @@ module.exports = {
       console.log("an error occured " + e);
       res.status(500).send("Server error");
     }
-    console.log(result)
+    console.log(result);
   },
 
   async getAUser(req, res) {
@@ -30,87 +30,85 @@ module.exports = {
         `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url 
                 from users u, branches b 
                 where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}'`
-            )
-            //logic
-            if(result.length==1){            
-                var jwt_payload={
-                uuid:result[0].uuid,
-                name:result[0].name
-            }
-            var token=jwt.sign(
-                result[0],process.env.JWT_SECRET,{expiresIn:"1H"}
-            );
-            console.log(token);
-            Object.assign(result[0],{token:token});
-            res.status(200).send(result);
-        }else{
-            res.status(401).send("Unsuccessfull login");
-        }
-        }catch(e){
-            console.log('an error occured '+e)
-            res.status(500).send('Server error')
-        }
-    },
+      );
+      //logic
+      if (result.length == 1) {
+        var jwt_payload = {
+          uuid: result[0].uuid,
+          name: result[0].name,
+        };
+        var token = jwt.sign(result[0], process.env.JWT_SECRET, {
+          expiresIn: "1H",
+        });
+        console.log(token);
+        Object.assign(result[0], { token: token });
+        res.status(200).send(result);
+      } else {
+        res.status(401).send("Unsuccessfull login");
+      }
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("Server error");
+    }
+  },
 
-    
-    async getACustomer(req,res){
-        console.log('request come');
-        try{
-            var [result,metadata]= await sequelize.query(
-                `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url 
+  async getACustomer(req, res) {
+    console.log("request come");
+    try {
+      var [result, metadata] = await sequelize.query(
+        `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url 
                 from users u, branches b 
                 where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}' and u.role='Customer'`
-            )
-            //logic
-            if(result.length==1){            
-                var jwt_payload={
-                uuid:result[0].uuid,
-                name:result[0].name
-            }
-            var token=jwt.sign(
-                result[0],process.env.JWT_SECRET,{expiresIn:"1H"}
-            );
-            console.log(token);
-            Object.assign(result[0],{token:token});
-            res.status(200).send(result);
-        }else{
-            res.status(401).send("Unsuccessfull login");
-        }
-        }catch(e){
-            console.log('an error occured '+e)
-            res.status(500).send('Server error')
-        }
-    },
+      );
+      //logic
+      if (result.length == 1) {
+        var jwt_payload = {
+          uuid: result[0].uuid,
+          name: result[0].name,
+        };
+        var token = jwt.sign(result[0], process.env.JWT_SECRET, {
+          expiresIn: "1H",
+        });
+        console.log(token);
+        Object.assign(result[0], { token: token });
+        res.status(200).send(result);
+      } else {
+        res.status(401).send("Unsuccessfull login");
+      }
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("Server error");
+    }
+  },
 
-
-    async getADeliverer(req,res){
-        console.log('request come');
-        try{
-            var [result,metadata]= await sequelize.query(
-                `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url 
+  async getADeliverer(req, res) {
+    console.log("request come");
+    try {
+      var [result, metadata] = await sequelize.query(
+        `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url 
                 from users u, branches b 
                 where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}' and role='Deliverer'`
-            )
-            //logic
-            if(result.length==1){            
-                var jwt_payload={
-                uuid:result[0].uuid,
-                name:result[0].name
-            }
-            var token=jwt.sign(
-                result[0],process.env.JWT_SECRET,{expiresIn:"1H"}
-            );
-            console.log(token);
-            Object.assign(result[0],{token:token});
-            res.status(200).send(result);
-        }else{
-            res.status(401).send("Unsuccessfull login");
-        }
-        }catch(e){
-            console.log('an error occured '+e)
-            res.status(500).send('Server error')
-        }
-    },
+      );
+      //logic
+      if (result.length == 1) {
+        var jwt_payload = {
+          uuid: result[0].uuid,
+          name: result[0].name,
+        };
+        var token = jwt.sign(result[0], process.env.JWT_SECRET, {
+          expiresIn: "1H",
+        });
+        console.log(token);
+        Object.assign(result[0], { token: token });
+        res.status(200).send(result);
+      } else {
+        res.status(401).send("Unsuccessfull login");
+      }
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("Server error");
+    }
+  },
 
   async getACustomer(req, res) {
     console.log("request come");
@@ -233,7 +231,7 @@ module.exports = {
   //   console.log("request come");
   //   try {
   //     var [result, metadata] = await sequelize.query(
-  //       `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url 
+  //       `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url
   //           from users u, branches b
   //           where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}' and role='Organization Owner' `
   //     );
@@ -269,12 +267,12 @@ module.exports = {
         role: req.body.role,
         branch_id: req.body.branch_id,
       });
-      var organization_id=req.body.organization_id;
+      var organization_id = req.body.organization_id;
       console.log(newData.dataValues.uuid);
-     // var result=await organization.update({owner:newData.dataValues.uuid},{where:{uuid:org_id}});
-     var result = await sequelize.query(
-      `update organizations set owner='${newData.dataValues.uuid}' where uuid='${organization_id}'`
-     );
+      // var result=await organization.update({owner:newData.dataValues.uuid},{where:{uuid:org_id}});
+      var result = await sequelize.query(
+        `update organizations set owner='${newData.dataValues.uuid}' where uuid='${organization_id}'`
+      );
       res.status(200).send(newData.dataValues);
     } catch (e) {
       console.log("an error occured " + e);
