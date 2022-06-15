@@ -21,7 +21,7 @@ module.exports={
         console.log(req.query.organization_id);
         try {
           var [result, metadata] = await sequelize.query(
-            `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId ,u.image_url as image_url
+            `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password
                     from users u, branches b 
                     where u.branch_id=b.uuid and b.organization_id='${req.query.organization_id}'`
           );
