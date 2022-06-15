@@ -19,6 +19,7 @@ module.exports = {
       console.log("an error occured " + e);
       res.status(500).send("Server error");
     }
+    console.log(result)
   },
 
   async getAUser(req, res) {

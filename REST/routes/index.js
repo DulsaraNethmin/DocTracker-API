@@ -23,9 +23,10 @@ module.exports=(app)=>{
 //organization routes
     app.post('/organization/add',organization.addOrganiation)
 
-//branch routes
+//branch routesgetAllBranches
     app.post('/branch/add',branch.addBranch)
     app.delete('/branch/delete',branch.deleteBranch)
+    app.get('/branch/get/all',user.getAllUser)
 
 //document routes
     app.post('/document/add',document.addDocument)
