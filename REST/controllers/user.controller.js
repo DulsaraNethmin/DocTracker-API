@@ -12,7 +12,7 @@ module.exports = {
       var [result, metadata] = await sequelize.query(
         `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId ,u.image_url as image_url
                 from users u, branches b 
-                where u.branch_id=b.uuid and u.branch_id='${req.query.branch_id}'`
+                where u.branch_id=b.uuid and u.branch_id='${req.query.branch_id}' and u.role='Customer'`
       );
       res.status(200).send(result);
     } catch (e) {
