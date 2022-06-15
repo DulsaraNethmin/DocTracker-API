@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 module.exports = {
   async getAllUser(req, res) {
     console.log("request come");
+    console.log(req.query.branch_id);
     try {
       var [result, metadata] = await sequelize.query(
         `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId ,u.image_url as image_url
