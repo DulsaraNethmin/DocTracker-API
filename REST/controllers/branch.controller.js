@@ -7,8 +7,8 @@ module.exports = {
       var newData = await branch.create({
         name: req.body.name,
         number: req.body.number,
-        town: req.body.town,
         street: req.body.street,
+        town: req.body.town,
         organization_id: req.body.organization_id,
       });
       res.status(200).send(newData);
