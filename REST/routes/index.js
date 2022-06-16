@@ -22,10 +22,12 @@ module.exports=(app)=>{
 
 //organization routes
     app.post('/organization/add',organization.addOrganiation)
+    app.get('/organization/get/all',organization.getAllOrgUsers)
 
-//branch routes
+//branch routesgetAllBranches
     app.post('/branch/add',branch.addBranch)
     app.delete('/branch/delete',branch.deleteBranch)
+    app.get('/branch/get/all',branch.getAllBranches)
 
 //document routes
     app.post('/document/add',document.addDocument)
