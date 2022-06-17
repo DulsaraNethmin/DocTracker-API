@@ -3,13 +3,13 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Notification extends Model {
+  class notification extends Model {
 
     static associate({NotificationUser}) {
       this.hasMany(NotificationUser,{foreignKey:'notification_id'})
     }
   }
-  Notification.init({
+  notification.init({
     uuid:{
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
@@ -25,5 +25,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Notification',
     tableName:'notifications'
   });
-  return Notification;
+  return notification;
 };
