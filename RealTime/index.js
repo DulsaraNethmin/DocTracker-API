@@ -13,9 +13,9 @@ app.use(express.json);
 var users={};
 io.on("connection",(socket)=>{
     console.log("connected");
-    socket.on("signin",(id)=>{console.log(id);
+    socket.on("signin",(id)=>{
         users[id]=socket;
-        console.log(users);
+        console.log(Object.keys(users));
     });
 
     socket.on('msg',(msg)=>{
@@ -28,7 +28,7 @@ io.on("connection",(socket)=>{
         }
     });
 
-    socket.on('new_msg',(id)=>{
+    socket.on('new_mail',(id)=>{
         console.log(`Mail Target is ${id}`);
         if(users[id]){
             users[id].emit('incoming_mail',"you have a Incoming mail.");
