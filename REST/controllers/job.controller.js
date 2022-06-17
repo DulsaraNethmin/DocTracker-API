@@ -27,13 +27,6 @@ module.exports={
         var deliveries=req.body["deliveries"];
         console.log(deliveries);
        try{ for(i=0;i<deliveries.length;i++){
-            var validate_result=await sequelize.query(`select * from deliveries 
-            where doc_id='${deliveries[i]["doc_id"]}' and is_completed=${false}`);
-            console.log(validate_result.length);
-            if(validate_result.length!=0){
-                throw "already in queue"
-                //res.status(401).send("doc alread in the queue.");
-            }
             var response=await delivery.create({
                 "end_customer_id":deliveries[i]["end_customer"],
                 "doc_id":deliveries[i]["doc_id"],
@@ -43,13 +36,8 @@ module.exports={
         }
         res.status(201).send("deliveries added.");
     }catch(e){
-            if(e == "already in queue")
-                res.status(401).send(e);
-            else{
-                console.log(e);
-                res.status(400).send(e);
-                }
-
+            console.log(e);
+            res.status(400).send("error");
         }
     }
 }
