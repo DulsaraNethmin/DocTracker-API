@@ -12,26 +12,26 @@ module.exports = {
      * }], {});
     */
 
-      await queryInterface.bulkInsert('organizations', [{
-        uuid:"8cbcb43b-9ae9-4734-b09c-62f1e4c7b483",
-        name: 'Supernova',
-        owner:null,
-        createdAt:"2022-04-03 12:45:05",
-        updatedAt:"2022-04-03 12:45:05"
-     },{
-      uuid:"8cbcb43b-9ae9-9090-b09c-62f1e4c7b483",
-      name: 'SunLanka',
+     await queryInterface.bulkInsert('organizations', [{
+      uuid:"8cbcb43b-9ae9-4734-b09c-62f1e4c7b483",
+      name: 'Supernova',
       owner:null,
       createdAt:"2022-04-03 12:45:05",
       updatedAt:"2022-04-03 12:45:05"
-   } ,{
-    uuid:"8cbcb43b-9ae9-1000-b09c-62f1e4c7b483",
-    name: 'DevBoom',
+   },{
+    uuid:"8cbcb43b-9ae9-9090-b09c-62f1e4c7b483",
+    name: 'SunLanka',
     owner:null,
     createdAt:"2022-04-03 12:45:05",
     updatedAt:"2022-04-03 12:45:05"
- }  
-    ], {});
+ } ,{
+  uuid:"8cbcb43b-9ae9-1000-b09c-62f1e4c7b483",
+  name: 'DevBoom',
+  owner:null,
+  createdAt:"2022-04-03 12:45:05",
+  updatedAt:"2022-04-03 12:45:05"
+}  
+  ], {});
   },
 
   async down (queryInterface, Sequelize) {
