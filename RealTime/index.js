@@ -8,14 +8,26 @@ const io=require('socket.io')(server)
 
 
 app.use(express.json);
-//app.get('/',(req,res)=>{res.send("Real time Server")});
 
-var users={};
+let branches={};
+let users={};
 io.on("connection",(socket)=>{
     console.log("connected");
-    socket.on("signin",(id)=>{
+    socket.on("signin",({id,branch_id})=>{
+        console.log(id,branch_id);
         users[id]=socket;
+        socket.join(branch_id)
+        if(Object.keys(branches).includes(branch_id)){
+            console.log('www');
+            if(!(branches[`${branch_id}`].includes(id)))
+            branches[`${branch_id}`].push(id); 
+        }else{
+            console.log('herer');
+            branches[`${branch_id}`]=[id];
+        }
+        //branches[branch_id][0]=id;
         console.log(Object.keys(users));
+        console.log(branches)
     });
 
     socket.on('msg',(msg)=>{
@@ -33,6 +45,12 @@ io.on("connection",(socket)=>{
         if(users[id]){
             users[id].emit('incoming_mail',"you have a Incoming mail.");
         }
+    });
+
+    socket.on('end',(user_id)=>{
+        socket.disconnect();   
+        delete users[user_id];
+        console.log(Object.keys(users));
     });
 
     
