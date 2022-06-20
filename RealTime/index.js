@@ -1,6 +1,5 @@
 const express = require('express');
 const http = require('http');
-//const cors = require('cors');
 const port=process.env.PORT || 8000;
 const app=express();
 const server=http.createServer(app)
@@ -25,7 +24,6 @@ io.on("connection",(socket)=>{
             console.log('herer');
             branches[`${branch_id}`]=[id];
         }
-        //branches[branch_id][0]=id;
         console.log(Object.keys(users));
         console.log(branches)
     });
@@ -45,6 +43,11 @@ io.on("connection",(socket)=>{
         if(users[id]){
             users[id].emit('incoming_mail',"you have a Incoming mail.");
         }
+    });
+
+    socket.on('new_job',(branch_id)=>{
+        console.log(`A new job. from branch ${branch_id}`);
+        socket.to(branch_id).emit('new_job',"new job added");
     });
 
     socket.on('end',(user_id)=>{
