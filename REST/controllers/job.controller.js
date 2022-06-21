@@ -27,9 +27,13 @@ module.exports={
         var branch_id=req.query.branch_id;
        try{ 
             const[result,metadata]=await sequelize.query(
-                `select j.uuid as job_id,j.customer_id as customer_id,u.name as customer_name from 
-                jobs j, users u
-                where j.customer_id = u.uuid and j.branch_id='${branch_id}' and j.is_completed=${false}`
+                `select j.uuid as job_id,j.customer_id as customer_id,u.name as customer_name, j.is_completed as is_job_completed, d.uuid as delivery_id, d.doc_id as doc_id, 
+                 doc.doc_name as doc_name, d.end_customer_id as end_custmer_id, uu.name as end_customer_name, d.is_completed as is_delivery_completed
+                from jobs j, users u, deliveries d, documents doc,users uu
+                where j.branch_id='${branch_id}' and j.uuid=d.job_id and j.customer_id = u.uuid and  j.is_completed=${false} and  d.doc_id=doc.uuid and uu.uuid=d.end_customer_id`
+                // `select j.uuid as job_id, j.customer_id as customer_id, d.uuid as delivery_id
+                // from jobs j, deliveries d, users u
+                // where j.branch_id='${branch_id}' and j.uuid=d.job_id`
             );
             console.log(result);
             res.status(201).send(result);

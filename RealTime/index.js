@@ -54,9 +54,7 @@ io.on("connection",(socket)=>{
         socket.disconnect();   
         delete users[user_id];
         console.log(Object.keys(users));
-    });
-
-    
+    });    
 });
 
 
