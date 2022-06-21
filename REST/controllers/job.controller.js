@@ -23,6 +23,22 @@ module.exports={
         }
 
     },
+    async getAllJobs(req,res){
+        var branch_id=req.query.branch_id;
+       try{ 
+            const[result,metadata]=await sequelize.query(
+                `select j.uuid as job_id,j.customer_id as customer_id,u.name as customer_name from 
+                jobs j, users u
+                where j.customer_id = u.uuid and j.branch_id='${branch_id}' and j.is_completed=${false}`
+            );
+            console.log(result);
+            res.status(201).send(result);
+        }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
+    },
+
     async addNewdeliveries(req,res){
         var deliveries=req.body["deliveries"];
         console.log(deliveries);

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Payment extends Model {
+  class payment extends Model {
     static associate({Delivery,User}) {
       this.belongsTo(Delivery)
       this.belongsTo(User)
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
-  Payment.init({
+  payment.init({
     uuid:{
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
@@ -37,5 +37,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Payment',
     tableName:'payments'
   });
-  return Payment;
+  return payment;
 };
