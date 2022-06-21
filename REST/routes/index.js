@@ -37,6 +37,7 @@ module.exports=(app)=>{
 //job routes
     app.post('/job/add/deliveries',job.addNewdeliveries)
     app.post('/job/create/new',job.createNewJob)
+    app.get('/job/get/all',job.getAllJobs)
 
 //mail routes
     app.post('/mail/add',mail.addMail)
