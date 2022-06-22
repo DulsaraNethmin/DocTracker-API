@@ -5,7 +5,72 @@ const organization = require("../models").Organization;
 const jwt = require("jsonwebtoken");
 //require('dotenv').config();
 
+
+//Handle registration errors
+const handleErrors = (e)=>{
+  console.log(e.message,e.code);
+  //let error ={username:'',password:''};
+  let errors ={username:'',password:''};
+
+  //validation errors
+  if(e.message.includes('Validation error')){
+    //console.log(e);
+    // Object.values(e.errors).forEach( error => {
+    //   console.log(error.path);
+    //   console.log(error.message);
+    // })
+    Object.values(e.errors).forEach(error => {
+      //console.log(error.path);
+      errors[error.path]=error.message;
+    })
+    // Object.values(e.errors).forEach(({error}) => {
+    //   errors[error.path]=error.message;
+    // })
+  }
+  return errors;
+}
+
+
+
 module.exports = {
+  async addUser(req, res) {
+    try {
+      var newData = await user.create({
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        telephone: req.body.telephone,
+        role: req.body.role,
+        branch_id: req.body.branch_id,
+      });
+      var organization_id = req.body.organization_id;
+      console.log(newData.dataValues.uuid);
+      // var result=await organization.update({owner:newData.dataValues.uuid},{where:{uuid:org_id}});
+      var result = await sequelize.query(
+        `update organizations set owner='${newData.dataValues.uuid}' where uuid='${organization_id}'`
+      );
+      res.status(200).send(newData.dataValues);
+    } catch (e) {
+      //
+      // const errObj = {};
+      // e.errors.map((er) => {
+      //   errObj[er.path] = er.message;
+      // });
+      // console.log(errObj);
+      //
+       //console.log("an error occured " + e.message, e.code);
+      // console.log("err.name", e.name);
+      // console.log("err.message", e.message);
+      // console.log("err.errors", e.errors);
+
+      const errors = handleErrors(e);
+      //res.status(400).send("User not Created. Server error");
+      res.status(400).json({errors});
+      
+    }
+  },
+
   async getAllUser(req, res) {
     console.log("request come");
     console.log(req.query.branch_id);
@@ -221,59 +286,6 @@ module.exports = {
       } else {
         res.status(401).send("Unsuccessfull login");
       }
-    } catch (e) {
-      console.log("an error occured " + e);
-      res.status(500).send("Server error");
-    }
-  },
-
-  // async getAOrgOwner(req, res) {
-  //   console.log("request come");
-  //   try {
-  //     var [result, metadata] = await sequelize.query(
-  //       `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url
-  //           from users u, branches b
-  //           where  u.branch_id=b.uuid and u.username='${req.body.username}' and  u.password='${req.body.password}' and role='Organization Owner' `
-  //     );
-  //     //logic
-  //     if (result.length == 1) {
-  //       var jwt_payload = {
-  //         uuid: result[0].uuid,
-  //         name: result[0].name,
-  //       };
-  //       var token = jwt.sign(result[0], process.env.JWT_SECRET, {
-  //         expiresIn: "1H",
-  //       });
-  //       console.log(token);
-  //       Object.assign(result[0], { token: token });
-  //       res.status(200).send(result);
-  //     } else {
-  //       res.status(401).send("Unsuccessfull login");
-  //     }
-  //   } catch (e) {
-  //     console.log("an error occured " + e);
-  //     res.status(500).send("Server error");
-  //   }
-  // },
-
-  async addUser(req, res) {
-    try {
-      var newData = await user.create({
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        telephone: req.body.telephone,
-        role: req.body.role,
-        branch_id: req.body.branch_id,
-      });
-      var organization_id = req.body.organization_id;
-      console.log(newData.dataValues.uuid);
-      // var result=await organization.update({owner:newData.dataValues.uuid},{where:{uuid:org_id}});
-      var result = await sequelize.query(
-        `update organizations set owner='${newData.dataValues.uuid}' where uuid='${organization_id}'`
-      );
-      res.status(200).send(newData.dataValues);
     } catch (e) {
       console.log("an error occured " + e);
       res.status(500).send("Server error");
