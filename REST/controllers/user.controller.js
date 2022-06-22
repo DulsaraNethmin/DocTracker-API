@@ -174,6 +174,33 @@ module.exports={
             console.log('an error occured '+e)
             res.status(500).send("server error")
         }
-    }
+    },
+
+    async getAdminId(req,res){
+        console.log('request come');
+        try{
+            //var org=req.query.org_id;
+            var branch=req.query.branch;
+            var organization=req.query.organization;
+            var [result,metadata]= await sequelize.query(
+                `select u.uuid from users u, branches b,organizations o
+                where u.branch_id=b.uuid and b.organization_id=o.uuid and o.name='${organization}' and b.name='${branch}' and u.role ="Branch Owner"`
+            )
+            console.log(result);
+            if(result.length==1)
+            {
+                res.status(200).send(result);
+            }
+            else
+            {
+                res.status(401).send(result);
+            }
+            
+            
+        }catch(e){
+            console.log('an error occured '+e)
+            res.status(500).send('Server error')
+        }
+    }, 
 
 }

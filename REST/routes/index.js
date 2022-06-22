@@ -16,10 +16,12 @@ module.exports=(app)=>{
     app.put('/user/update/pic',auth,user.updateProfilePic)
     app.post('/user/verify/customer',user.getACustomer)
     app.post('/user/verify/deliverer',user.getADeliverer)
+    app.get('/user/get/admin/id',user.getAdminId)
 
 
 //organization routes
     app.post('/organization/add',organization.addOrganiation)
+    app.get('/organization/get/all',organization.getAllOrganization)
 
 //branch routes
     app.post('/branch/add',branch.addBranch)
