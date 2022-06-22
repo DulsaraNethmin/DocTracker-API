@@ -31,12 +31,36 @@ module.exports = (sequelize, DataTypes) => {
     },
     password:{
       type: DataTypes.STRING,
+      allowNull: [false, "Please enter a password"],
+      validate: {
+        len: {
+          args: [6, 15],
+          msg: "The password must contain between 6 and 15 characters.",
+        },
+      },
     },
     username:{
       type: DataTypes.STRING,
+      unique: true,
+      validate: {
+        isLowercase: {
+          args: true,
+          msg: "Must be lowercase",
+        },
+        len: {
+          args: [6, 15],
+          msg: "The username must contain between 6 and 15 characters.",
+        },
+      },
     },
     email:{
       type: DataTypes.STRING,
+        validate: {
+          isEmail: {
+            args: true,
+            msg: "Valid email-id required",
+          },
+        },
     },
     telephone:{
       type: DataTypes.STRING,

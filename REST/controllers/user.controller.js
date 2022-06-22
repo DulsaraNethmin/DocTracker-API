@@ -5,7 +5,25 @@ const organization = require("../models").Organization;
 const jwt = require("jsonwebtoken");
 //require('dotenv').config();
 
+
+const handleErrors = (e)=>{
+  console.log(e.message,e.code);
+  //let error ={username:'',password:''};
+  let errors ={username:'',password:''};
+
+  //validation errors
+  if(e.message.includes('Validation error')){
+
+    Object.values(e.errors).forEach(error => {
+      //console.log(error.path);
+      errors[error.path]=error.message;
+    })
+
+  }
+  return errors;
+}
 module.exports = {
+
   async getAllUser(req, res) {
     console.log("request come");
     console.log(req.query.branch_id);
@@ -228,6 +246,32 @@ module.exports = {
   },
 
 
+  // async addUser(req, res) {
+  //   try {
+  //     var newData = await user.create({
+  //       name: req.body.name,
+  //       username: req.body.username,
+  //       email: req.body.email,
+  //       password: req.body.password,
+  //       telephone: req.body.telephone,
+  //       role: req.body.role,
+  //       branch_id: req.body.branch_id,
+  //     });
+  //     var organization_id = req.body.organization_id;
+  //     console.log(newData.dataValues.uuid);
+  //     // var result=await organization.update({owner:newData.dataValues.uuid},{where:{uuid:org_id}});
+  //     var result = await sequelize.query(
+  //       `update organizations set owner='${newData.dataValues.uuid}' where uuid='${organization_id}'`
+  //     );
+  //     res.status(200).send(newData.dataValues);
+  //   } catch (e) {
+  //     console.log("an error occured " + e);
+  //     res.status(500).send("Server error");
+  //   }
+  // },
+
+
+
   async addUser(req, res) {
     try {
       var newData = await user.create({
@@ -247,8 +291,11 @@ module.exports = {
       );
       res.status(200).send(newData.dataValues);
     } catch (e) {
-      console.log("an error occured " + e);
-      res.status(500).send("Server error");
+
+
+      const errors = handleErrors(e);
+      res.status(400).json({errors});
+      
     }
   },
 
