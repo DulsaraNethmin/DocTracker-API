@@ -3,11 +3,7 @@ const http = require('http');
 const port=process.env.PORT || 8000;
 const app=express();
 const server=http.createServer(app)
-const io=require('socket.io')(server,{
-    cors:{
-        origin:'*'
-    }
-})
+const io=require('socket.io')(server)
 
 
 app.use(express.json);
@@ -41,8 +37,6 @@ io.on("connection",(socket)=>{
             users[targetId].emit('msg',msg);
         }
     });
-    socket.on('mail',payload=>{
-        console.log(payload);
 
     socket.on('new_mail',(id)=>{
         console.log(`Mail Target is ${id}`);
@@ -69,5 +63,4 @@ io.on("connection",(socket)=>{
 
 server.listen(port,"0.0.0.0",()=>{
     console.log("server started on: "+port);
-});
-
+})
