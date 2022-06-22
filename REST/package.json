@@ -20,8 +20,12 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
+<<<<<<< HEAD
     "sequelize": "^6.16.2",
     "socketio": "^1.0.0",
+=======
+    "sequelize": "^6.20.1",
+>>>>>>> 1839bb0f42760ae0e302d908be4d706b603ca214
     "uuid": "^8.3.2"
   }
 }

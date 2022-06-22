@@ -4,15 +4,15 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
-    static associate({Branch,User_Log,NotificationUser,Request,Job,DocumentUser,Mail}) {
+    static associate({Branch,User_Log,NotificationUser,Request,Delivery,DocumentUser,Mail}) {
       this.belongsTo(Branch)
       this.hasMany(User_Log,{foreignKey:'user_id'})
       this.hasMany(NotificationUser,{foreignKey:'user_id'})
       this.hasMany(Request,{foreignKey:'customer_id'})
       this.hasMany(Request,{foreignKey:'admin_id'})
-      this.hasMany(Job,{foreignKey:'admin_id'})
-      this.hasMany(Job,{foreignKey:'deliverer_id'})
-      this.hasMany(Job,{foreignKey:'customer_id'})
+      this.hasMany(Delivery,{foreignKey:'end_customer_id'})
+      this.hasMany(Delivery,{foreignKey:'deliverer_id'})
+      this.hasMany(Delivery,{foreignKey:'customer_id'})
       this.hasMany(DocumentUser,{foreignKey:'customer_id'})
       this.hasMany(Mail,{foreignKey:'from'})
       this.hasMany(Mail,{foreignKey:'to'})

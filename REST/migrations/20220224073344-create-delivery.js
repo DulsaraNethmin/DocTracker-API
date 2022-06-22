@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('requests', {
+    await queryInterface.createTable('deliveries', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,14 +12,17 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue:Sequelize.UUIDV4,
       },
-      admin_id: {
+      end_customer_id: {
         type: Sequelize.UUID
       },
-      customer_id: {
+      doc_id: {
         type: Sequelize.UUID
       },
-      document_id: {
+      job_id: {
         type: Sequelize.UUID
+      },
+      is_completed: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('requests');
+    await queryInterface.dropTable('deliveries');
   }
 };

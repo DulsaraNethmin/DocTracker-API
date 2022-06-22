@@ -1,45 +1,37 @@
 'use strict';
 const {
-  Model
+  Model, UUIDV4
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Job extends Model {
+  class job extends Model {
+    static associate({Branch}) {
 
-    static associate({User,Document,Payment}) {
-      this.belongsTo(User)
-      this.belongsTo(User)
-      this.belongsTo(User)
-      this.belongsTo(Document)
-      this.hasOne(Payment,{foreignKey:'job_id'})
     }
     toJSON(){
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
-  Job.init({
-    uuid:{
-      type: DataTypes.UUID,
-      defaultValue:DataTypes.UUIDV4,
+  job.init({
+    uuid: {
+      type:DataTypes.UUID,
+      defaultValue:UUIDV4
     },
-    date:{
-      type: DataTypes.DATE,
+    branch_id: {
+      type:DataTypes.UUID
     },
-    admin_id:{
-      type: DataTypes.UUID,
+    deliverer_id: {
+      type:DataTypes.UUID
     },
-    deliverer_id:{
-      type: DataTypes.UUID,
+    customer_id: {
+      type:DataTypes.UUID
     },
-    customer_id:{
-      type: DataTypes.UUID,
-    },
-    doc_id:{
-      type: DataTypes.UUID
+    is_completed: {
+      type:DataTypes.BOOLEAN
     },
   }, {
     sequelize,
     modelName: 'Job',
-    tableName:'jobs',
+    tableName: 'jobs'
   });
-  return Job;
+  return job;
 };

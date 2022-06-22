@@ -9,7 +9,10 @@ const http=require('http').createServer(app);
 const {sequelize} = require('./models');
 const { Server } = require('http');
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8080",
+    credentials: true,
+    optionSuccessStatus: 200
+
 };
 app.use(cors(corsOptions));
 
