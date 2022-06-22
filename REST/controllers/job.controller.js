@@ -68,11 +68,7 @@ module.exports={
             where doc_id="${doc_id}" and is_completed =${false}`
         );
         console.log(result[0].count);
-        if(result[0].count == 0){
-            res.status(200).send(result);
-        }else{
-            res.status(400).send(result);
-        }
+        res.status(200).send(result);
         
     }catch(e){
             console.log(e);

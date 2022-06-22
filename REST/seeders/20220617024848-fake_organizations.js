@@ -15,7 +15,7 @@ module.exports = {
      await queryInterface.bulkInsert('organizations', [{
       uuid:"8cbcb43b-9ae9-4734-b09c-62f1e4c7b483",
       name: 'Supernova',
-      owner:null,
+      owner:'2a9203fc-5350-42bd-b1e0-6dfd75776c90',
       createdAt:"2022-04-03 12:45:05",
       updatedAt:"2022-04-03 12:45:05"
    },{
