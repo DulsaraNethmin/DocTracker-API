@@ -5,7 +5,6 @@ const organization = require("../models").Organization;
 const jwt = require("jsonwebtoken");
 //require('dotenv').config();
 
-
 //Handle registration errors
 const handleErrors = (e)=>{
   console.log(e.message,e.code);
