@@ -56,5 +56,27 @@ module.exports={
             console.log(e);
             res.status(400).send("error");
         }
+    },
+
+    async verifyNewdelivery(req,res){
+        var doc_id=req.query.doc_id;
+       // console.log(deliveries);
+       try{ 
+        var [result,metadata]=await sequelize.query(
+            `select count(uuid) as count
+            from deliveries 
+            where doc_id="${doc_id}" and is_completed =${false}`
+        );
+        console.log(result[0].count);
+        if(result[0].count == 0){
+            res.status(200).send(result);
+        }else{
+            res.status(400).send(result);
+        }
+        
+    }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
     }
 }
