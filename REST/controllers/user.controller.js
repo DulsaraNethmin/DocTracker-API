@@ -313,7 +313,7 @@ module.exports = {
 
 
       const errors = handleErrors(e);
-      res.status(400).json({errors});
+      res.status(201).json(errors);
       
     }
   },
