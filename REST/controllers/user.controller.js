@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 
 const handleErrors = (e)=>{
   console.log(e.message,e.code);
-  //let error ={username:'',password:''};
   let errors ={username:'',password:''};
 
   //validation errors
@@ -226,7 +225,7 @@ module.exports = {
         Object.assign(result[0], { token: token });
         res.status(200).send(result);
       } else {
-        res.status(401).send("Unsuccessfull login");
+        res.status(201).send("Unsuccessfull login");
       }
     } catch (e) {
       console.log("an error occured " + e);
@@ -256,7 +255,7 @@ module.exports = {
         Object.assign(result[0], { token: token });
         res.status(200).send(result);
       } else {
-        res.status(401).send("Unsuccessfull login");
+        res.status(201).send("No result");
       }
     } catch (e) {
       console.log("an error occured " + e);
