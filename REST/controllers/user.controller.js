@@ -263,10 +263,12 @@ module.exports = {
   },
 
   async email(req, res) {
-    console.log("request come");
+    console.log("request come - Email");
     try {
-      let result = req.body.email;
-      console.log(result);
+      let email = req.body.email;
+      console.log(email);
+      let username = req.body.username;
+      console.log(username);
       let pass = req.body.password;
       console.log(pass);
       const transport = nodemailer.createTransport({
@@ -280,8 +282,9 @@ module.exports = {
 
       await transport.sendMail({
       	from: process.env.MAIL_FROM,
-      	to: "test@test.com",
-      	subject: "test email",
+      	//to: "test@test.com",
+      	to: `${req.body.email}`,
+      	subject: `Greetings from ${req.body.organization_name}`,
       	html: `<div className="email" style="
             border: 1px solid black;
             padding: 20px;
