@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.UUID
       },
       is_completed: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
