@@ -65,10 +65,32 @@ module.exports={
         var [result,metadata]=await sequelize.query(
             `select count(uuid) as count
             from deliveries 
-            where doc_id="${doc_id}" and is_completed =${0}`
+            where doc_id="${doc_id}" and (is_completed =${0} or is_completed=${1})`
         );
         console.log(result[0].count);
         res.status(200).send(result);
+        
+    }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
+    },
+
+    async updateJobStateToPending(req,res){
+        var job_id=req.query.job_id;
+        var deliverer_id=req.query.deliverer_id;
+        console.log(job_id);
+       try{ 
+        var newData = await job.update(
+            { is_completed: 1,deliverer_id:deliverer_id },
+            {
+              where: {
+                uuid: job_id,
+              },
+            }
+          );
+        console.log(newData);
+        res.status(200).send(newData);
         
     }catch(e){
             console.log(e);
