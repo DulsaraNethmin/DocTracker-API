@@ -46,7 +46,7 @@ module.exports = {
     var user_id = req.query.user_id;
     try {
       var [result, metadata] = await sequelize.query(
-        `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId,u.image_url as image_url 
+        `select u.uuid ,u.name as name ,u.email,u.username,u.role,telephone,b.name as branch,b.uuid as branchId,u.image_url as image_url 
                 from users u, branches b 
                 where  u.branch_id=b.uuid and u.uuid='${user_id}'`
       );

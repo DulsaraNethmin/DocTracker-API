@@ -87,7 +87,7 @@ module.exports = {
         branch_id:'1356d36d-05ca-5000-98bf-5a941355f418',
         createdAt:"2022-04-03 12:45:05",
         updatedAt:"2022-04-03 12:45:05",
-        image_url:'https://nethmin-bucket.s3.ap-south-1.amazonaws.com/profile.png'
+        image_url:'https://images.squarespace-cdn.com/content/v1/5aee389b3c3a531e6245ae76/1531792846005-MYGZAOI0L93I3YJWHB6W/D75_5697-Edit.jpg'
       },{
         uuid:'2a9203fc-5350-2590-b1e0-6dfd75776c90',
         name: 'Bimsara perera',
