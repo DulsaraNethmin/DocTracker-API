@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { redirect } = require("express/lib/response");
 const { Sequelize, sequelize } = require("../models");
 const user = require("../models").User;
@@ -6,23 +7,23 @@ const jwt = require("jsonwebtoken");
 //require('dotenv').config();
 
 
-const handleErrors = (e)=>{
-  console.log(e.message,e.code);
-  let errors ={username:'',password:''};
+const nodemailer = require("nodemailer")
+
+
+const handleErrors = (e) => {
+  console.log(e.message, e.code);
+  let errors = { username: "", password: "" };
 
   //validation errors
-  if(e.message.includes('Validation error')){
-
-    Object.values(e.errors).forEach(error => {
+  if (e.message.includes("Validation error")) {
+    Object.values(e.errors).forEach((error) => {
       //console.log(error.path);
-      errors[error.path]=error.message;
-    })
-
+      errors[error.path] = error.message;
+    });
   }
   return errors;
-}
+};
 module.exports = {
-
   async getAllUser(req, res) {
     console.log("request come");
     console.log(req.query.branch_id);
@@ -51,13 +52,11 @@ module.exports = {
       );
       //logic
       res.status(200).send(result);
-      } 
-    catch (e) {
+    } catch (e) {
       console.log("an error occured " + e);
       res.status(500).send("Server error");
     }
   },
-
 
   async getAUser(req, res) {
     console.log("request come");
@@ -263,6 +262,45 @@ module.exports = {
     }
   },
 
+  async email(req, res) {
+    console.log("request come");
+    try {
+      let result = req.body.email;
+      console.log(result);
+      let pass = req.body.password;
+      console.log(pass);
+      const transport = nodemailer.createTransport({
+      	host: process.env.MAIL_HOST,
+      	port: process.env.MAIL_PORT,
+      	auth: {
+      		user: process.env.MAIL_USER,
+      		pass: process.env.MAIL_PASS
+      	}
+      })
+
+      await transport.sendMail({
+      	from: process.env.MAIL_FROM,
+      	to: "test@test.com",
+      	subject: "test email",
+      	html: `<div className="email" style="
+            border: 1px solid black;
+            padding: 20px;
+            font-family: sans-serif;
+            line-height: 2;
+            font-size: 20px;
+            ">
+            <h2>Here is your email!</h2>
+            <p>Harsha</p>
+
+            <p>All the best, Darwin</p>
+             </div>
+        `
+      })
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("Server error");
+    }
+  },
 
   // async addUser(req, res) {
   //   try {
@@ -288,8 +326,6 @@ module.exports = {
   //   }
   // },
 
-
-
   async addUser(req, res) {
     try {
       var newData = await user.create({
@@ -309,11 +345,8 @@ module.exports = {
       );
       res.status(200).send(newData.dataValues);
     } catch (e) {
-
-
       const errors = handleErrors(e);
       res.status(201).json(errors);
-      
     }
   },
 
