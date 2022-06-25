@@ -20,19 +20,16 @@ module.exports=(app)=>{
     app.put('/user/update/pic',auth,user.updateProfilePic)
     app.post('/user/verify/customer',user.getACustomer)
     app.post('/user/verify/deliverer',user.getADeliverer)
-    app.post("/send/mail",user.email)
 
 //organization routes
     app.post('/organization/add',organization.addOrganiation)
     app.get('/organization/get/all',organization.getAllOrgUsers)
     app.get('/organization/get/branchowners',organization.getBranchOwners)
-    app.get('/organization/get/single/branchowners',organization.getSingleBranchOwner)
 
 //branch routesgetAllBranches
     app.post('/branch/add',branch.addBranch)
     app.delete('/branch/delete',branch.deleteBranch)
     app.get('/branch/get/all',branch.getAllBranches)
-    app.post('/branch/update',branch.updatebranch)
 
 //document routes
     app.post('/document/add',document.addDocument)

@@ -1,4 +1,3 @@
-require("dotenv").config();
 const { redirect } = require("express/lib/response");
 const { Sequelize, sequelize } = require("../models");
 const user = require("../models").User;
@@ -6,22 +5,25 @@ const organization = require("../models").Organization;
 const jwt = require("jsonwebtoken");
 //require('dotenv').config();
 
-const nodemailer = require("nodemailer");
 
-const handleErrors = (e) => {
-  console.log(e.message, e.code);
-  let errors = { username: "", password: "" };
+const handleErrors = (e)=>{
+  console.log(e.message,e.code);
+  //let error ={username:'',password:''};
+  let errors ={username:'',password:''};
 
   //validation errors
-  if (e.message.includes("Validation error")) {
-    Object.values(e.errors).forEach((error) => {
+  if(e.message.includes('Validation error')){
+
+    Object.values(e.errors).forEach(error => {
       //console.log(error.path);
-      errors[error.path] = error.message;
-    });
+      errors[error.path]=error.message;
+    })
+
   }
   return errors;
-};
+}
 module.exports = {
+
   async getAllUser(req, res) {
     console.log("request come");
     console.log(req.query.branch_id);
@@ -50,11 +52,13 @@ module.exports = {
       );
       //logic
       res.status(200).send(result);
-    } catch (e) {
+      } 
+    catch (e) {
       console.log("an error occured " + e);
       res.status(500).send("Server error");
     }
   },
+
 
   async getAUser(req, res) {
     console.log("request come");
@@ -211,8 +215,6 @@ module.exports = {
       );
       //logic
       if (result.length == 1) {
-      
-        //jwt
         var jwt_payload = {
           uuid: result[0].uuid,
           name: result[0].name,
@@ -224,7 +226,7 @@ module.exports = {
         Object.assign(result[0], { token: token });
         res.status(200).send(result);
       } else {
-        res.status(201).send("Unsuccessfull login");
+        res.status(401).send("Unsuccessfull login");
       }
     } catch (e) {
       console.log("an error occured " + e);
@@ -234,7 +236,6 @@ module.exports = {
 
   async getAOrgOwner(req, res) {
     console.log("request come");
-
     try {
       var [result, metadata] = await sequelize.query(
         `select u.uuid ,u.name as name ,u.email,u.username,u.role,o.name as organization,o.uuid as organizationId,o.owner as orgOwner,u.image_url as image_url 
@@ -244,7 +245,6 @@ module.exports = {
       //logic
       console.log(result);
       if (result.length) {
-        //jwt
         var jwt_payload = {
           uuid: result[0].uuid,
           name: result[0].name,
@@ -256,7 +256,7 @@ module.exports = {
         Object.assign(result[0], { token: token });
         res.status(200).send(result);
       } else {
-        res.status(201).send("No result");
+        res.status(401).send("Unsuccessfull login");
       }
     } catch (e) {
       console.log("an error occured " + e);
@@ -264,49 +264,6 @@ module.exports = {
     }
   },
 
-  async email(req, res) {
-    console.log("request come - Email");
-    console.log(req.body.sendEmailStatus);
-    try {
-      let email = req.body.email;
-      console.log(email);
-      let username = req.body.username;
-      console.log(username);
-      let pass = req.body.password;
-      console.log(pass);
-      const transport = nodemailer.createTransport({
-        host: process.env.MAIL_HOST,
-        port: process.env.MAIL_PORT,
-        auth: {
-          user: process.env.MAIL_USER,
-          pass: process.env.MAIL_PASS,
-        },
-      });
-
-      await transport.sendMail({
-        from: process.env.MAIL_FROM,
-        //to: "test@test.com",
-        to: `${req.body.email}`,
-        subject: `Greetings from ${req.body.organization_name}`,
-        html: `<div className="email" style="
-            border: 1px solid black;
-            padding: 20px;
-            font-family: sans-serif;
-            line-height: 2;
-            font-size: 20px;
-            ">
-            <h2>Here is your email!</h2>
-            <p>Harsha</p>
-
-            <p>All the best, Darwin</p>
-             </div>
-        `,
-      });
-    } catch (e) {
-      console.log("an error occured " + e);
-      res.status(500).send("Server error");
-    }
-  },
 
   // async addUser(req, res) {
   //   try {
@@ -332,10 +289,11 @@ module.exports = {
   //   }
   // },
 
+
+
   async addUser(req, res) {
     try {
       var newData = await user.create({
-        sendEmailStatus: req.body.sendEmailStatus,
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
@@ -350,51 +308,13 @@ module.exports = {
       var result = await sequelize.query(
         `update organizations set owner='${newData.dataValues.uuid}' where uuid='${organization_id}'`
       );
-
-      if (req.body.sendEmailStatus) {
-        //email
-        console.log("request come - Email");
-
-        let email = req.body.email;
-        console.log(email);
-        let username = req.body.username;
-        console.log(username);
-        let pass = req.body.password;
-        console.log(pass);
-        const transport = nodemailer.createTransport({
-          host: process.env.MAIL_HOST,
-          port: process.env.MAIL_PORT,
-          auth: {
-            user: process.env.MAIL_USER,
-            pass: process.env.MAIL_PASS,
-          },
-        });
-
-        await transport.sendMail({
-          from: process.env.MAIL_FROM,
-          //to: "test@test.com",
-          to: `${req.body.email}`,
-          subject: `Greetings from ${req.body.organization_name}`,
-          html: `<div className="email" style="
-             border: 1px solid black;
-             padding: 20px;
-             font-family: sans-serif;
-             line-height: 2;
-             font-size: 20px;
-             ">
-             <h2>Here is your email!</h2>
-             <p>Harsha</p>
- 
-             <p>All the best, Darwin</p>
-              </div>
-         `,
-        });
-      }
-
       res.status(200).send(newData.dataValues);
     } catch (e) {
+
+
       const errors = handleErrors(e);
-      res.status(201).json(errors);
+      res.status(400).json({errors});
+      
     }
   },
 
