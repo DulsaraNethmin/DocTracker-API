@@ -17,6 +17,8 @@ module.exports = {
       number:"220/2",
       town:"Gampaha",
       street:"Colombo road",
+      latitude:"7.049923",
+      longitude:"79.998884",
       organization_id:'8cbcb43b-9ae9-4734-b09c-62f1e4c7b483',
       createdAt:"2022-04-03 12:45:05",
       updatedAt:"2022-04-03 12:45:05"
@@ -27,6 +29,8 @@ module.exports = {
       number:"227/2",
       town:"Kurunegala",
       street:"Kandy road",
+      latitude:"7.515934",
+      longitude:"80.436005",
       organization_id:'8cbcb43b-9ae9-4734-b09c-62f1e4c7b483',
       createdAt:"2022-04-03 12:45:05",
       updatedAt:"2022-04-03 12:45:05"
@@ -37,6 +41,8 @@ module.exports = {
       number:"267/2",
       town:"Kurunegala",
       street:"Colombo road",
+      latitude:"7.464194",
+      longitude:"80.343933",
       organization_id:'8cbcb43b-9ae9-4734-b09c-62f1e4c7b483',
       createdAt:"2022-04-03 12:45:05",
       updatedAt:"2022-04-03 12:45:05"
@@ -47,6 +53,8 @@ module.exports = {
       number:"207/2",
       town:"Kandy",
       street:"Matale road",
+      latitude:"7.281014",
+      longitude:"80.630980",
       organization_id:'8cbcb43b-9ae9-4734-b09c-62f1e4c7b483',
       createdAt:"2022-04-03 12:45:05",
       updatedAt:"2022-04-03 12:45:05"
@@ -57,6 +65,8 @@ module.exports = {
       number:"207/2",
       town:"Paliyagoda",
       street:"Main road",
+      latitude:"6.963046",
+      longitude:"79.881806",
       organization_id:'8cbcb43b-9ae9-4734-b09c-62f1e4c7b483',
       createdAt:"2022-04-03 12:45:05",
       updatedAt:"2022-04-03 12:45:05"

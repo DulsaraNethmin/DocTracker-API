@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.UUID
     },
     is_completed: {
-      type:DataTypes.BOOLEAN
+      // open = 0  pending = 1 finished = 2
+      type:DataTypes.INTEGER
     },
   }, {
     sequelize,

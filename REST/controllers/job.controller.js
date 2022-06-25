@@ -12,7 +12,7 @@ module.exports={
                 branch_id:req.body.branch_id,
                 deliverer_id:req.body.deliverer_id,
                 customer_id:req.body.customer_id,
-                is_completed:false
+                is_completed:0
             });
             //console.log(result);
             res.status(201).send(result);
@@ -30,7 +30,24 @@ module.exports={
                 `select j.uuid as job_id,j.customer_id as customer_id,u.name as customer_name, j.is_completed as is_job_completed, d.uuid as delivery_id, d.doc_id as doc_id, 
                  doc.doc_name as doc_name, d.end_customer_id as end_custmer_id, uu.name as end_customer_name, d.is_completed as is_delivery_completed
                 from jobs j, users u, deliveries d, documents doc,users uu
-                where j.branch_id='${branch_id}' and j.uuid=d.job_id and j.customer_id = u.uuid and  j.is_completed=${false} and  d.doc_id=doc.uuid and uu.uuid=d.end_customer_id`
+                where j.branch_id='${branch_id}' and j.uuid=d.job_id and j.customer_id = u.uuid and  j.is_completed=${0} and  d.doc_id=doc.uuid and uu.uuid=d.end_customer_id`
+            );
+            console.log(result);
+            res.status(201).send(result);
+        }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
+    },
+
+    async getAllMyJobs(req,res){
+        var deliverer_id=req.query.deliverer_id;
+       try{ 
+            const[result,metadata]=await sequelize.query(
+                `select j.uuid as job_id,j.customer_id as customer_id,u.name as customer_name, j.is_completed as is_job_completed, d.uuid as delivery_id, d.doc_id as doc_id, 
+                 doc.doc_name as doc_name, d.end_customer_id as end_custmer_id, uu.name as end_customer_name, d.is_completed as is_delivery_completed
+                from jobs j, users u, deliveries d, documents doc,users uu
+                where j.deliverer_id='${deliverer_id}' and j.is_completed=${1} and j.uuid=d.job_id and j.customer_id = u.uuid  and  d.doc_id=doc.uuid and uu.uuid=d.end_customer_id`
             );
             console.log(result);
             res.status(201).send(result);
@@ -47,7 +64,7 @@ module.exports={
             var response=await delivery.create({
                 "end_customer_id":deliveries[i]["end_customer"],
                 "doc_id":deliveries[i]["doc_id"],
-                "is_completed":false,
+                "is_completed":0,
                 "job_id":req.body.job_id
             });
         }
@@ -65,10 +82,32 @@ module.exports={
         var [result,metadata]=await sequelize.query(
             `select count(uuid) as count
             from deliveries 
-            where doc_id="${doc_id}" and is_completed =${false}`
+            where doc_id="${doc_id}" and (is_completed =${0} or is_completed=${1})`
         );
         console.log(result[0].count);
         res.status(200).send(result);
+        
+    }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
+    },
+
+    async updateJobStateToPending(req,res){
+        var job_id=req.query.job_id;
+        var deliverer_id=req.query.deliverer_id;
+        console.log(job_id);
+       try{ 
+        var newData = await job.update(
+            { is_completed: 1,deliverer_id:deliverer_id },
+            {
+              where: {
+                uuid: job_id,
+              },
+            }
+          );
+        console.log(newData);
+        res.status(200).send(newData);
         
     }catch(e){
             console.log(e);

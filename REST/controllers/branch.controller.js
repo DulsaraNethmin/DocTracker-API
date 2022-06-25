@@ -9,6 +9,8 @@ module.exports = {
         number: req.body.number,
         street: req.body.street,
         town: req.body.town,
+        latitude:req.body.latitude,
+        longitude:req.body.longitude,
         organization_id: req.body.organization_id,
       });
       res.status(200).send(newData);
@@ -19,23 +21,18 @@ module.exports = {
   },
 
   async getAllBranches(req, res) {
-    //var branch_id=req.body.branch_id
+    var org_id=req.query.org_id;
     console.log("request come");
     try {
       var [result, metadata] = await sequelize.query(
-        `select u.uuid ,u.name as ownerName ,u.email,u.username,u.role,,b.number,b.sreet,b.town,b.name as branch,b.uuid as branchId,u.image_url as image_url
-                    from users u, branches b 
-                    where u.branch_id=b.uuid and u.branch_id='${req.query.branch_id}'`
+        `select u.uuid as owner_uuid ,u.name as ownerName ,u.email,u.username,u.role,b.number,b.street,b.town,b.name as branch,b.uuid as branchId,b.latitude as latitude,b.longitude as longitude
+                    from  users u,branches b 
+                    where b.organization_id='${org_id}' and u.role='Branch Owner' and u.branch_id=b.uuid `
       );
-      if (result.length) {
-        console.log(result);
         res.status(200).send(result);
-      } else {
-        res.status(401).send(result);
-      }
     } catch (e) {
       console.log("an error occured " + e);
-      res.status(500).send("Server error");
+      res.status(400).send("Server error");
     }
   },
 
