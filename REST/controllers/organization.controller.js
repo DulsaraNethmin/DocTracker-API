@@ -33,12 +33,29 @@ module.exports={
         console.log(result)
       },
 
+      async getOrganization(req, res) {
+        console.log("request come");
+        console.log(req.query.organization_id);
+        try {
+          var [result, metadata] = await sequelize.query(
+            `select o.name as o_name,u.name,u.username,u.password, u.email, u.telephone
+                    from users u, organizations o 
+                    where u.branch_id=b.uuid and u.role='Organization Owner' and and b.organization_id=o.uuid and o.uuid='${req.query.organization_id}' `
+          );
+          res.status(200).send(result);
+        } catch (e) {
+          console.log("an error occured " + e);
+          res.status(500).send("Server error");
+        }
+        console.log(result)
+      },
+
       async getBranchOwners(req, res) {
         console.log("request come");
         console.log(req.query.organization_id);
         try {
           var [result, metadata] = await sequelize.query(
-            `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password
+            `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password, u.email, u.telephone, b.latitude, b.longitude
                     from users u, branches b 
                     where u.branch_id=b.uuid and b.organization_id='${req.query.organization_id}' and u.role='Branch Owner'`
           );
@@ -55,7 +72,7 @@ module.exports={
         console.log(req.query.branch_id);
         try {
           var [result, metadata] = await sequelize.query(
-            `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password, u.email, u.telephone
+            `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password, u.email, u.telephone,b.latitude, b.longitude
                           from users u, branches b 
                           where u.branch_id=b.uuid and b.uuid='${req.query.branch_id}' and u.role='Branch Owner'`
           );
