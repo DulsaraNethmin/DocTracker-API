@@ -33,15 +33,15 @@ module.exports=(app)=>{
 
 //document routes
     app.post('/document/add',document.addDocument)
-    app.get('/document/get/by/branch',document.getDocumenByBranch)
+    app.get('/document/get/by/branch',auth,document.getDocumenByBranch)
     app.get('/document/verify',document.verifyDoc)
 
 //job routes
     app.post('/job/add/deliveries',job.addNewdeliveries)
     app.post('/job/create/new',job.createNewJob)
-    app.get('/job/get/all',job.getAllJobs)
-    app.get('/job/verify',job.verifyNewdelivery)
-    app.get('/job/get/all/my',job.getAllMyJobs)
+    app.get('/job/get/all',auth,job.getAllJobs)
+    app.get('/job/verify',auth,job.verifyNewdelivery)
+    app.get('/job/get/all/my',auth,job.getAllMyJobs)
     app.put('/job/update/pending',job.updateJobStateToPending)
 
 //mail routes
