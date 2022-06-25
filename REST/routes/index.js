@@ -35,7 +35,8 @@ module.exports=(app)=>{
     app.post('/document/add',document.addDocument)
     app.get('/document/get/by/branch',auth,document.getDocumenByBranch)
     app.get('/document/verify',document.verifyDoc)
-
+    app.get('/document/getweb/by/branch',document.getDocumenByBranchWeb);
+    app.get('/document/verifyweb',document.verifyDocweb);
 //job routes
     app.post('/job/add/deliveries',job.addNewdeliveries)
     app.post('/job/create/new',job.createNewJob)
