@@ -19,7 +19,21 @@ module.exports={
             res.status(500).send('Server error')
         }
     },
-
+    async getDocumenByBranchWeb(req,res){
+        try{
+            var branch= req.query.branch_id;
+            var [result,metadata] = await sequelize.query(
+                `select d.uuid as doc_id,d.doc_name as doc,d.type as doc_type,d.date as date,d.branch_id as branch_id
+                 from documents d 
+                 where d.branch_id ='${branch}'`
+                 )
+            console.log(metadata)
+            res.status(200).send(result);
+        }catch(e){
+            console.log('an error occured '+e)
+            res.status(500).send('Server error')
+        }
+    },
 
     async addDocument(req,res){
         try{
@@ -29,7 +43,7 @@ module.exports={
                 date:req.body.date,
                 branch_id:req.body.branch_id,
             })
-            res.status(200).send("new document added")
+            res.status(200);
         }catch(e){
             console.log('an error occured '+e)
             res.status(500).send('Server error')
