@@ -50,6 +50,11 @@ io.on("connection",(socket)=>{
         socket.to(branch_id).emit('new_job',"new job added");
     });
 
+    socket.on('accept_job',(branch_id)=>{
+        console.log(`Job Accepted. broadcast to branch ${branch_id}`);
+        socket.to(branch_id).emit('accept_job',"Job Accepted");
+    });
+
     socket.on('end',(user_id)=>{
         socket.disconnect();   
         delete users[user_id];

@@ -27,6 +27,12 @@ module.exports = {
       street: {
         type: Sequelize.STRING
       },
+      latitude:{
+        type:Sequelize.STRING,
+      },
+      longitude:{
+        type:Sequelize.STRING,
+      },
       organization_id:{
         type:Sequelize.UUID,
       },
