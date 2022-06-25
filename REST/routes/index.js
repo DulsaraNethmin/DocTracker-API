@@ -42,7 +42,7 @@ module.exports=(app)=>{
     app.get('/job/get/all',auth,job.getAllJobs)
     app.get('/job/verify',auth,job.verifyNewdelivery)
     app.get('/job/get/all/my',auth,job.getAllMyJobs)
-    app.put('/job/update/pending',job.updateJobStateToPending)
+    app.put('/job/update/pending',auth,job.updateJobStateToPending)
 
 //mail routes
     app.post('/mail/add',mail.addMail)
