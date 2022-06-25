@@ -37,7 +37,7 @@ module.exports = {
     console.log(req.query.organization_id);
     try {
       var [result, metadata] = await sequelize.query(
-        `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password
+        `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password, u.email, u.telephone
                     from users u, branches b 
                     where u.branch_id=b.uuid and b.organization_id='${req.query.organization_id}' and u.role='Branch Owner'`
       );
@@ -54,7 +54,7 @@ module.exports = {
     console.log(req.query.branch_id);
     try {
       var [result, metadata] = await sequelize.query(
-        `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password
+        `select b.name as b_name,b.number as b_number,b.town as b_town,b.street as b_street,u.name,u.username,u.password, u.email, u.telephone
                       from users u, branches b 
                       where u.branch_id=b.uuid and b.uuid='${req.query.branch_id}' and u.role='Branch Owner'`
       );
