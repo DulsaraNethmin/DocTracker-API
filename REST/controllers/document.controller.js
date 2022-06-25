@@ -68,5 +68,24 @@ module.exports={
             console.log('an error occured '+e)
             res.status(500).send('Server error')
         }
+    },
+    async verifyDocweb(req,res){
+        try{
+            var doc_id=req.query.doc_id;
+            //var customer_id=req.query.customer_id;
+            var [result,metadata]=await sequelize.query(`
+                select d.doc_name,d.type
+                from  documents d
+                where d.uuid='${doc_id}' 
+            `)
+            console.log(result);
+            if(result.length==1)
+                res.status(200).send(result)
+            else
+                res.status(400).send("Doc Not verified.")
+        }catch(e){
+            console.log('an error occured '+e)
+            res.status(500).send('Server error')
+        }
     }
 }
