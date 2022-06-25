@@ -211,44 +211,7 @@ module.exports = {
       );
       //logic
       if (result.length == 1) {
-        //email
-        console.log("request come - Email");
-
-        let email = req.body.email;
-        console.log(email);
-        let username = req.body.username;
-        console.log(username);
-        let pass = req.body.password;
-        console.log(pass);
-        const transport = nodemailer.createTransport({
-          host: process.env.MAIL_HOST,
-          port: process.env.MAIL_PORT,
-          auth: {
-            user: process.env.MAIL_USER,
-            pass: process.env.MAIL_PASS,
-          },
-        });
-
-        await transport.sendMail({
-          from: process.env.MAIL_FROM,
-          //to: "test@test.com",
-          to: `${req.body.email}`,
-          subject: `Greetings from ${req.body.organization_name}`,
-          html: `<div className="email" style="
-              border: 1px solid black;
-              padding: 20px;
-              font-family: sans-serif;
-              line-height: 2;
-              font-size: 20px;
-              ">
-              <h2>Here is your email!</h2>
-              <p>Harsha</p>
-  
-              <p>All the best, Darwin</p>
-               </div>
-          `,
-        });
-
+      
         //jwt
         var jwt_payload = {
           uuid: result[0].uuid,
