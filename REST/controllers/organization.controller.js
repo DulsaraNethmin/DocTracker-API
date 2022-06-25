@@ -39,8 +39,8 @@ module.exports={
         try {
           var [result, metadata] = await sequelize.query(
             `select o.name as o_name,u.name,u.username,u.password, u.email, u.telephone
-                    from users u, organizations o 
-                    where u.branch_id=b.uuid and u.role='Organization Owner' and and b.organization_id=o.uuid and o.uuid='${req.query.organization_id}' `
+                    from users u, organizations o, branches b
+                    where u.branch_id=b.uuid and u.role='Organization Owner' and b.organization_id=o.uuid and o.uuid='${req.query.organization_id}' `
           );
           res.status(200).send(result);
         } catch (e) {
