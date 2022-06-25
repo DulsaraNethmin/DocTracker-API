@@ -21,7 +21,6 @@ module.exports = {
   },
 
   async getAllBranches(req, res) {
-    //var branch_id=req.body.branch_id
     var org_id=req.query.org_id;
     console.log("request come");
     try {
