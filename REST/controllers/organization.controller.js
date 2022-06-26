@@ -39,8 +39,8 @@ module.exports={
         try {
           var [result, metadata] = await sequelize.query(
             `select o.name as o_name,u.name,u.username,u.password, u.email, u.telephone
-                    from users u, organizations o, branches b
-                    where u.branch_id=b.uuid and u.role='Organization Owner' and b.organization_id=o.uuid and o.uuid='${req.query.organization_id}' `
+                    from users u, organizations o
+                    where o.uuid='${req.query.organization_id}' and o.owner=u.uuid and u.role='Organization Owner' `
           );
           res.status(200).send(result);
         } catch (e) {
@@ -82,6 +82,25 @@ module.exports={
           res.status(500).send("Server error");
         }
         console.log(result);
+      },
+
+      async updateOrganization(req, res) {
+        console.log("request come");
+        try {
+          console.log(req.body.organization_id);
+          var result1 = await sequelize.query(
+            `update organizations set name='${req.body.name}'
+             where uuid='${req.body.organization_id}'`
+          );
+          var result2 = await sequelize.query(
+            `update users set name='${req.body.owner_name}',username='${req.body.username}',email='${req.body.email}',password='${req.body.password}',telephone='${req.body.telephone}'
+             where branch_id='${req.body.branch_id}'`
+          );
+          res.status(200).send(result1);
+        } catch (e) {
+          console.log("an error occured " + e);
+          res.status(500).send("Server error");
+        }
       },
 
     // async updateOrganization(String owner_id){
