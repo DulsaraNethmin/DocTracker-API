@@ -464,4 +464,28 @@ module.exports = {
       res.status(500).send("server error");
     }
   },
+
+
+  async updateProfile(req, res) {
+    try {
+      uuid = req.query.uuid;
+      username = req.body.username;
+      password = req.body.password;
+      telephone = req.body.telephone;
+
+      var newData = await user.update(
+        { username:username,password:password,telephone:telephone },
+        {
+          where: {
+            uuid: uuid,
+          },
+        }
+      );
+      console.log(newData);
+      res.status(200).send(result);
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("server error");
+    }
+  },
 };
