@@ -238,4 +238,60 @@ module.exports={
             res.status(400).send("error");
         }
     },
+
+    async updateDeliveryStep_customer(req,res){
+        console.log('delivery step update');
+        var doc_id=req.query.doc_id;
+        var customer_id=req.query.customer_id;
+       // console.log(deliveries);
+       try{ 
+        var [result,metadata]=await sequelize.query(
+            `select j.uuid as job_id,d.uuid as delivery_id, d.is_completed as state
+            from deliveries d, jobs j 
+            where d.job_id=j.uuid and doc_id="${doc_id}" and d.end_customer_id = "${customer_id}" and d.is_completed=${1}`
+        );
+        console.log(result);
+        if(result.length == 1){
+            var state=result[0].state;
+            var delivery_id = result[0].delivery_id;
+            console.log(state,delivery_id);
+            var newData = await delivery.update(
+                { is_completed: (state+1) },
+                {
+                  where: {
+                    uuid: delivery_id,
+                  },
+                }
+              );
+            res.status(200).send(newData);
+        }else{
+            res.status(401).send('bad request...');
+        }
+        //res.status(200).send(result);
+        
+    }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
+
+    },
+
+    async getAllOpenPendingDeliveries(req,res){
+        //console.log('delivery step update');
+        var branch_id=req.query.branch_id;
+       try{ 
+        var [result,metadata]=await sequelize.query(
+            `select j.uuid as job_id,j.customer_id as customer_id,u.name as customer_name, j.is_completed as is_job_completed, d.uuid as delivery_id, d.doc_id as doc_id, 
+                 doc.doc_name as doc_name, d.end_customer_id as end_custmer_id, uu.name as end_customer_name, d.is_completed as is_delivery_completed
+                from jobs j, users u, deliveries d, documents doc,users uu
+                where j.branch_id='${branch_id}' and j.uuid=d.job_id and j.customer_id = u.uuid and  (d.is_completed=${0} or d.is_completed=${1} or d.is_completed=${0}) and  d.doc_id=doc.uuid and uu.uuid=d.end_customer_id`
+        );
+        console.log(result);
+            res.status(200).send(newData);        
+    }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
+
+    },
 }
