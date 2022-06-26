@@ -362,6 +362,7 @@ module.exports = {
         console.log(username);
         let pass = req.body.password;
         console.log(pass);
+        let role = req.body.role;
         const transport = nodemailer.createTransport({
           host: process.env.MAIL_HOST,
           port: process.env.MAIL_PORT,
@@ -383,10 +384,13 @@ module.exports = {
              line-height: 2;
              font-size: 20px;
              ">
-             <h2>Here is your email!</h2>
-             <p>Harsha</p>
+             <h2>Congratulations! You are now been registered with the ${req.body.organization_name}</h2>
+             <p>Here are your details Regarding the registration!</p>
+             <p>User Name : ${req.body.username}</p>
+             <p>Password : ${req.body.password}</p>
+             <p>Role : ${req.body.role}</p>
  
-             <p>All the best, Darwin</p>
+             <p>All the best, from @DocTracker Team</p>
               </div>
          `,
         });
