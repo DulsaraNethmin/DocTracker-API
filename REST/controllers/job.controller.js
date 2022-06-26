@@ -182,5 +182,60 @@ module.exports={
             console.log(e);
             res.status(400).send("error");
         }
-    }
+    },
+
+    async getDeliveryState(req,res){
+        console.log('delivery state');
+        var delivery_id=req.query.delivery_id;
+       // console.log(deliveries);
+       try{ 
+        var [result,metadata]=await sequelize.query(
+            `select is_completed as state
+            from deliveries 
+            where uuid="${delivery_id}"`
+        );
+        //console.log(result[0].count);
+        res.status(200).send(result);
+        
+    }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
+    },
+
+    async updateDeliveryStep(req,res){
+        console.log('delivery step update');
+        var doc_id=req.query.doc_id;
+        var deliverer_id=req.query.deliverer_id;
+       // console.log(deliveries);
+       try{ 
+        var [result,metadata]=await sequelize.query(
+            `select j.uuid as job_id,d.uuid as delivery_id, d.is_completed as state
+            from deliveries d, jobs j 
+            where d.job_id=j.uuid and doc_id="${doc_id}" and j.deliverer_id = "${deliverer_id}" and (d.is_completed=${0} or d.is_completed=${2})`
+        );
+        console.log(result);
+        if(result.length == 1){
+            var state=result[0].state;
+            var delivery_id = result[0].delivery_id;
+            console.log(state,delivery_id);
+            var newData = await delivery.update(
+                { is_completed: (state+1) },
+                {
+                  where: {
+                    uuid: delivery_id,
+                  },
+                }
+              );
+            res.status(200).send(newData);
+        }else{
+            res.status(401).send('bad request...');
+        }
+        //res.status(200).send(result);
+        
+    }catch(e){
+            console.log(e);
+            res.status(400).send("error");
+        }
+    },
 }

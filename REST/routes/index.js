@@ -52,6 +52,8 @@ module.exports=(app)=>{
     app.get('/job/verify',auth,job.verifyNewdelivery)
     app.get('/job/get/all/my',auth,job.getAllMyJobs)
     app.put('/job/update/pending',auth,job.updateJobStateToPending)
+    app.get('/job/delivery/state',auth,job.getDeliveryState)
+    app.get('/job/delivery/update',auth,job.updateDeliveryStep)
 
 //mail routes
     app.post('/mail/add',mail.addMail)
