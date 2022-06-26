@@ -3,7 +3,7 @@ const {
   Model, UUID
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Request extends Model {
+  class request extends Model {
 
     static associate({User,Document}) {
       this.belongsTo(User)
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
-  Request.init({
+  request.init({
     uuid:{
       type: DataTypes.UUID,
     },
@@ -33,5 +33,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Request',
     tableName:'requests',
   });
-  return Request;
+  return request;
 };

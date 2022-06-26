@@ -32,12 +32,19 @@ module.exports = (sequelize, DataTypes) => {
     street: {
       type: DataTypes.STRING,
     },
+    latitude:{
+      type:DataTypes.STRING,
+    },
+    longitude:{
+      type:DataTypes.STRING,
+    },
     organization_id:{
       type:DataTypes.UUID,
-    }
+    },
   }, {
     sequelize,
     modelName: 'Branch',
+    tableName: 'branches'
   });
   return Branch;
 };

@@ -3,7 +3,7 @@ const {
   Model, UUIDV4
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Organization extends Model {
+  class organization extends Model {
     static associate({Branch}) {
       this.hasMany(Branch,{foreignKey:'organization_id'})
     }
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       return {...this.get(),id:undefined,createdAt:undefined,updatedAt:undefined};
     }
   }
-  Organization.init({
+  organization.init({
     uuid:{
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
@@ -30,6 +30,6 @@ module.exports = (sequelize, DataTypes) => {
   // Organization.afterCreate(async(org)=>{
   //   console.log('hook trigger...!')
   // });
-  return Organization;
+  return organization;
 
 };
