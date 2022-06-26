@@ -20,6 +20,7 @@ module.exports=(app)=>{
     app.put('/user/update/pic',auth,user.updateProfilePic)
     app.post('/user/verify/customer',user.getACustomer)
     app.post('/user/verify/deliverer',user.getADeliverer)
+    app.put('/update',user.updateUser);
 
 //organization routes
     app.post('/organization/add',organization.addOrganiation)

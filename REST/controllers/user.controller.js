@@ -369,4 +369,13 @@ module.exports = {
       res.status(500).send("server error");
     }
   },
+   async updateUser(req, res){
+    console.log(req.body.user_id);
+    var result1 = await sequelize.query(
+      `update users set name='${req.body.Name}',username='${req.body.Username}',email='${req.body.email}',telephone='${req.body.Telephone}',role='${req.body.Role}'
+       where uuid='${req.body.user_id}'`
+    );
+    
+    
+  }
 };
