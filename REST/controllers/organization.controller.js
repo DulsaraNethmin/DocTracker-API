@@ -87,16 +87,17 @@ module.exports={
       async updateOrganization(req, res) {
         console.log("request come");
         try {
-          console.log(req.body.organization_id);
-          var result1 = await sequelize.query(
-            `update organizations set name='${req.body.name}'
-             where uuid='${req.body.organization_id}'`
-          );
+          //console.log(req.body.organization_id);
+          console.log(req.body.user_id);
+          // var result1 = await sequelize.query(
+          //   `update organizations set name='${req.body.name}'
+          //    where uuid='${req.body.organization_id}'`
+          // );
           var result2 = await sequelize.query(
             `update users set name='${req.body.owner_name}',username='${req.body.username}',email='${req.body.email}',password='${req.body.password}',telephone='${req.body.telephone}'
-             where branch_id='${req.body.branch_id}'`
+             where uuid='${req.query.user_id}'`
           );
-          res.status(200).send(result1);
+          res.status(200).send(result2);
         } catch (e) {
           console.log("an error occured " + e);
           res.status(500).send("Server error");
