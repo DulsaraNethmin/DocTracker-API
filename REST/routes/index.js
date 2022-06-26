@@ -27,7 +27,9 @@ module.exports=(app)=>{
     app.get('/organization/get/all',organization.getAllOrgUsers)
     app.get('/organization/get/branchowners',organization.getBranchOwners)
     app.get('/organization/get/single/branchowners',organization.getSingleBranchOwner)
-
+    app.get('/organization/get/details',organization.getOrganization)
+    app.post('/organization/update',organization.updateOrganization)
+    
 //branch routesgetAllBranches
     app.post('/branch/add',branch.addBranch)
     app.delete('/branch/delete',branch.deleteBranch)

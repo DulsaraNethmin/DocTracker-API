@@ -76,4 +76,41 @@ module.exports = {
   //         res.status(500).send("server error")
   //     }
   // }
+
+  async getOrganization(req, res) {
+    console.log("request come");
+    console.log(req.query.organization_id);
+    try {
+      var [result, metadata] = await sequelize.query(
+        `select o.name as o_name,u.name,u.username,u.password, u.email, u.telephone
+                from users u, organizations o
+                where o.uuid='${req.query.organization_id}' and o.owner=u.uuid and u.role='Organization Owner' `
+      );
+      res.status(200).send(result);
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("Server error");
+    }
+    console.log(result)
+  },
+
+  async updateOrganization(req, res) {
+    console.log("request come");
+    try {
+      console.log(req.body.organization_id);
+      console.log(req.body.user_id);
+      var result1 = await sequelize.query(
+        `update organizations set name='${req.body.name}'
+         where uuid='${req.body.organization_id}'`
+      );
+      var result2 = await sequelize.query(
+        `update users set name='${req.body.owner_name}',username='${req.body.username}',email='${req.body.email}',password='${req.body.password}',telephone='${req.body.telephone}'
+         where uuid='${req.body.user_id}'`
+      );
+      res.status(200).send(result1);
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("Server error");
+    }
+  },
 };
