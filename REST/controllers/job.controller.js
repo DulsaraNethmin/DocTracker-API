@@ -184,3 +184,22 @@ module.exports={
         }
     }
 }
+
+//
+// async getOneJob(req, res) {
+//     console.log("request come");
+//     var doc_id = req.query.doc_id;
+//     try {
+//       var [result, metadata] = await sequelize.query(
+//         `select j.uuid as job_id,j.customer_id as customer_id,u.name as customer_name, j.is_completed as is_job_completed, d.uuid as delivery_id, d.doc_id as doc_id, 
+//                  doc.doc_name as doc_name, d.end_customer_id as end_custmer_id, uu.name as end_customer_name, d.is_completed as is_delivery_completed
+//                 from jobs j, users u, deliveries d, documents doc,users uu
+//                 where j.branch_id='${doc_id}' and j.uuid=d.job_id and j.customer_id = u.uuid and  d.is_completed=${0} and  d.doc_id=doc.uuid and uu.uuid=d.end_customer_id`
+//             );
+//       //logic
+//       res.status(200).send(result);
+//     } catch (e) {
+//       console.log("an error occured " + e);
+//       res.status(500).send("Server error");
+//     }
+//   };

@@ -45,6 +45,8 @@ module.exports=(app)=>{
     app.post('/job/add/deliveries',job.addNewdeliveries)
     app.post('/job/create/new',job.createNewJob)
     app.get('/job/get/all',auth,job.getAllJobs)
+    //getOneJob
+    // app.get('/job/get/getOneJob',job.getOneJob)
     app.get('/job/get/all/opendeliveries',job.getAllOpenDeliveries)
     app.get('/job/get/all/pendingdeliveries',job.getAllPendingDeliveries)
     app.get('/job/get/all/finisheddeliveries',job.getAllFinishedDeliveries)
