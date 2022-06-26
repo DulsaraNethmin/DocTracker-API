@@ -9,6 +9,8 @@ module.exports = {
         number: req.body.number,
         street: req.body.street,
         town: req.body.town,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
         organization_id: req.body.organization_id,
       });
       res.status(200).send(newData);
