@@ -211,7 +211,6 @@ module.exports = {
       );
       //logic
       if (result.length == 1) {
-      
         //jwt
         var jwt_payload = {
           uuid: result[0].uuid,
@@ -345,6 +344,8 @@ module.exports = {
         branch_id: req.body.branch_id,
       });
       var organization_id = req.body.organization_id;
+      
+      
       console.log(newData.dataValues.uuid);
       // var result=await organization.update({owner:newData.dataValues.uuid},{where:{uuid:org_id}});
       var result = await sequelize.query(
@@ -391,7 +392,7 @@ module.exports = {
         });
       }
 
-      res.status(200).send(newData.dataValues);
+      res.status(200).send(newData.dataValues.uuid);
     } catch (e) {
       const errors = handleErrors(e);
       res.status(201).json(errors);
