@@ -4,7 +4,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('branches', {
+    await queryInterface.createTable('Branches', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -27,12 +27,6 @@ module.exports = {
       street: {
         type: Sequelize.STRING
       },
-      latitude:{
-        type:Sequelize.STRING,
-      },
-      longitude:{
-        type:Sequelize.STRING,
-      },
       organization_id:{
         type:Sequelize.UUID,
       },
@@ -47,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('branches');
+    await queryInterface.dropTable('Branches');
   }
 };

@@ -3,13 +3,13 @@ const {
   Model, UUIDV4
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class notificationUser extends Model {
+  class NotificationUser extends Model {
     static associate({User,Notification}) {
       this.belongsTo(User)
       this.belongsTo(Notification)
     }
   }
-  notificationUser.init({
+  NotificationUser.init({
     notification_id:{
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'NotificationUser',
-    tableName: 'notificationusers'
   });
-  return notificationUser;
+  return NotificationUser;
 };

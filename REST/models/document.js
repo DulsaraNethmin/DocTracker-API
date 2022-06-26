@@ -5,9 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Document extends Model {
 
-    static associate({Branch,Delivery,Request,DocumentUser}) {
+    static associate({Branch,Job,Request,DocumentUser}) {
        this.belongsTo(Branch)
-       this.hasMany(Delivery,{foreignKey:'doc_id'})
+       this.hasMany(Job,{foreignKey:'document_id'})
        this.hasMany(Request,{foreignKey:'document_id'})
        this.hasMany(DocumentUser,{foreignKey:'doc_id'})
     }
@@ -35,7 +35,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Document',
-    tableName: 'documents'
   });
   return Document;
 };
