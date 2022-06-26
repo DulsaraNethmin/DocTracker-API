@@ -3,13 +3,13 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User_Log extends Model {
+  class user_log extends Model {
 
     static associate({User}) {
       this.belongsTo(User)
     }
   }
-  User_Log.init({
+  user_log.init({
     uuid:{
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User_Log',
+    tableName: 'user_logs'
   });
-  return User_Log;
+  return user_log;
 };
