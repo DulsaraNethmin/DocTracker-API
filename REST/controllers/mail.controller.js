@@ -15,6 +15,7 @@ module.exports={
                 head:head,
                 body:body
             });
+            console.log(newData);
             var [result,metadata]=await sequelize.query(
                 `select m.uuid as mail_id, fu.uuid as from_id,fu.name as from_name,tu.uuid as to_id,tu.name as to_name,m.head,m.body,m.seen,m.time
                 from mails m, users fu,users tu
