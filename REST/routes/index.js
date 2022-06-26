@@ -30,6 +30,7 @@ module.exports=(app)=>{
     app.post('/branch/add',branch.addBranch)
     app.delete('/branch/delete',branch.deleteBranch)
     app.get('/branch/get/all',branch.getAllBranches)
+    app.get('/branch/all',branch.allBranches)
 
 //document routes
     app.post('/document/add',document.addDocument)

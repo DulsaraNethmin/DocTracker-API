@@ -39,6 +39,25 @@ module.exports = {
     }
   },
 
+  async allBranches(req, res) {
+    console.log("request come");
+    try {
+      var [result, metadata] = await sequelize.query(
+                `select name
+                from branches`
+      );
+      if (result.length) {
+        console.log(result);
+        res.status(200).send(result);
+      } else {
+        res.status(401).send(result);
+      }
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("Server error");
+    }
+  },
+
   async deleteBranch(req, res) {
     try {
       uuid = req.query.uuid;
