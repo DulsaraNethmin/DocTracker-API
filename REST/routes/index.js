@@ -28,7 +28,6 @@ module.exports=(app)=>{
     app.post('/organization/add',organization.addOrganiation)
     app.get('/organization/get/all',organization.getAllOrganization)
     app.post("/send/mail",user.email)
-    app.put('/user/update/profile',user.updateProfile)
 
 //organization routes
     app.post('/organization/add',organization.addOrganiation)
