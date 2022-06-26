@@ -23,6 +23,7 @@ module.exports=(app)=>{
     app.post('/user/verify/deliverer',user.getADeliverer)
     app.post("/send/mail",user.email)
     app.put('/user/update/profile',user.updateProfile)
+    app.get('/user/get/admin/id',user.getAdminId)
 
 //organization routes
     app.post('/organization/add',organization.addOrganiation)
