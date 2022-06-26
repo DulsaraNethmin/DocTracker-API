@@ -6,21 +6,21 @@ const organization = require("../models").Organization;
 const jwt = require("jsonwebtoken");
 //require('dotenv').config();
 
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 
-const handleErrors = (e) => {
-  console.log(e.message, e.code);
-  let errors = { username: "", password: "" };
+// const handleErrors = (e) => {
+//   console.log(e.message, e.code);
+//   let errors = { username: "", password: "" };
 
-  //validation errors
-  if (e.message.includes("Validation error")) {
-    Object.values(e.errors).forEach((error) => {
-      //console.log(error.path);
-      errors[error.path] = error.message;
-    });
-  }
-  return errors;
-};
+//   //validation errors
+//   if (e.message.includes("Validation error")) {
+//     Object.values(e.errors).forEach((error) => {
+//       //console.log(error.path);
+//       errors[error.path] = error.message;
+//     });
+//   }
+//   return errors;
+// };
 module.exports = {
   async getAllUser(req, res) {
     console.log("request come");
