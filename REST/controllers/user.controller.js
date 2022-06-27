@@ -4,6 +4,7 @@ const { Sequelize, sequelize } = require("../models");
 const user = require("../models").User;
 const organization = require("../models").Organization;
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 //require('dotenv').config();
 
 const nodemailer = require("nodemailer");
@@ -334,12 +335,14 @@ module.exports = {
 
   async addUser(req, res) {
     try {
+      const hash = await bcrypt.hash(req.body.password,10);
+
       var newData = await user.create({
         sendEmailStatus: req.body.sendEmailStatus,
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password,
+        password: hash,
         telephone: req.body.telephone,
         role: req.body.role,
         branch_id: req.body.branch_id,
