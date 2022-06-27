@@ -4,15 +4,15 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
-    static associate({Branch,User_Log,NotificationUser,Request,Job,DocumentUser,Mail}) {
+    static associate({Branch,User_Log,NotificationUser,Request,Delivery,DocumentUser,Mail}) {
       this.belongsTo(Branch)
       this.hasMany(User_Log,{foreignKey:'user_id'})
       this.hasMany(NotificationUser,{foreignKey:'user_id'})
       this.hasMany(Request,{foreignKey:'customer_id'})
       this.hasMany(Request,{foreignKey:'admin_id'})
-      this.hasMany(Job,{foreignKey:'admin_id'})
-      this.hasMany(Job,{foreignKey:'deliverer_id'})
-      this.hasMany(Job,{foreignKey:'customer_id'})
+      this.hasMany(Delivery,{foreignKey:'end_customer_id'})
+      this.hasMany(Delivery,{foreignKey:'deliverer_id'})
+      this.hasMany(Delivery,{foreignKey:'customer_id'})
       this.hasMany(DocumentUser,{foreignKey:'customer_id'})
       this.hasMany(Mail,{foreignKey:'from'})
       this.hasMany(Mail,{foreignKey:'to'})
@@ -31,12 +31,36 @@ module.exports = (sequelize, DataTypes) => {
     },
     password:{
       type: DataTypes.STRING,
+      allowNull: [false, "Please enter a password"],
+      validate: {
+        len: {
+          args: [6, 100],
+          msg: "The password must contain between 6 and 15 characters.",
+        },
+      },
     },
     username:{
       type: DataTypes.STRING,
+      unique: true,
+      validate: {
+        isLowercase: {
+          args: true,
+          msg: "Must be lowercase",
+        },
+        len: {
+          args: [6, 15],
+          msg: "The username must contain between 6 and 15 characters.",
+        },
+      },
     },
     email:{
       type: DataTypes.STRING,
+        validate: {
+          isEmail: {
+            args: true,
+            msg: "Valid email-id required",
+          },
+        },
     },
     telephone:{
       type: DataTypes.STRING,
