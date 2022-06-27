@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: [false, "Please enter a password"],
       validate: {
         len: {
-          args: [6, 15],
+          args: [6, 100],
           msg: "The password must contain between 6 and 15 characters.",
         },
       },
