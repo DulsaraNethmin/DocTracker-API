@@ -211,6 +211,7 @@ module.exports = {
       );
       //logic
       if (result.length == 1) {
+      
         //jwt
         var jwt_payload = {
           uuid: result[0].uuid,
@@ -342,10 +343,10 @@ module.exports = {
         telephone: req.body.telephone,
         role: req.body.role,
         branch_id: req.body.branch_id,
+        image_url:req.body.image_url
+        
       });
       var organization_id = req.body.organization_id;
-      
-      
       console.log(newData.dataValues.uuid);
       // var result=await organization.update({owner:newData.dataValues.uuid},{where:{uuid:org_id}});
       var result = await sequelize.query(
@@ -362,7 +363,6 @@ module.exports = {
         console.log(username);
         let pass = req.body.password;
         console.log(pass);
-        let role = req.body.role;
         const transport = nodemailer.createTransport({
           host: process.env.MAIL_HOST,
           port: process.env.MAIL_PORT,
@@ -384,19 +384,16 @@ module.exports = {
              line-height: 2;
              font-size: 20px;
              ">
-             <h2>Congratulations! You are now been registered with the ${req.body.organization_name}</h2>
-             <p>Here are your details Regarding the registration!</p>
-             <p>User Name : ${req.body.username}</p>
-             <p>Password : ${req.body.password}</p>
-             <p>Role : ${req.body.role}</p>
+             <h2>Here is your email!</h2>
+             <p>Harsha</p>
  
-             <p>All the best, from @DocTracker Team</p>
+             <p>All the best, Darwin</p>
               </div>
          `,
         });
       }
 
-      res.status(200).send(newData.dataValues.uuid);
+      res.status(200).send(newData.dataValues);
     } catch (e) {
       const errors = handleErrors(e);
       res.status(201).json(errors);
@@ -410,6 +407,21 @@ module.exports = {
         `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId ,u.image_url as image_url
                 from users u, branches b 
                 where u.branch_id=b.uuid and u.branch_id='${req.query.branch_id}' and u.role='Customer'`
+      );
+      res.status(200).send(result);
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("Server error");
+    }
+  },
+
+  async getAllDelivererOfABranch(req, res) {
+    console.log("request come");
+    try {
+      var [result, metadata] = await sequelize.query(
+        `select u.uuid ,u.name as name ,u.email,u.username,u.role,b.name as branch,b.uuid as branchId ,u.image_url as image_url
+                from users u, branches b 
+                where u.branch_id=b.uuid and u.branch_id='${req.query.branch_id}' and u.role='Deliverer'`
       );
       res.status(200).send(result);
     } catch (e) {
@@ -454,4 +466,55 @@ module.exports = {
       res.status(500).send("server error");
     }
   },
+
+
+  async updateProfile(req, res) {
+    try {
+      uuid = req.query.uuid;
+      username = req.body.username;
+      password = req.body.password;
+      telephone = req.body.telephone;
+
+      var newData = await user.update(
+        { username:username,password:password,telephone:telephone },
+        {
+          where: {
+            uuid: uuid,
+          },
+        }
+      );
+      console.log(newData);
+      res.status(200).send(result);
+    } catch (e) {
+      console.log("an error occured " + e);
+      res.status(500).send("server error");
+    }
+  },
+
+  async getAdminId(req,res){
+    console.log('request come');
+    try{
+        //var org=req.query.org_id;
+        var branch=req.query.branch;
+        var organization=req.query.organization;
+        var [result,metadata]= await sequelize.query(
+            `select u.uuid from users u, branches b,organizations o
+            where u.branch_id=b.uuid and b.organization_id=o.uuid and o.name='${organization}' and b.name='${branch}' and u.role ="Branch Owner"`
+        )
+        console.log(result);
+        if(result.length==1)
+        {
+            res.status(200).send(result);
+        }
+        else
+        {
+            res.status(401).send(result);
+        }
+        
+        
+    }catch(e){
+        console.log('an error occured '+e)
+        res.status(500).send('Server error')
+    }
+}, 
 };
